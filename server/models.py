@@ -30,9 +30,7 @@ class Pianist(db.Model, SerializerMixin):
 
   coordinator_id = db.Column(db.Integer, db.ForeignKey('Coordinators.id'))
 
-  students = db.relationship('Student', back_populates='pianists')
   events = db.relationship('Event', back_populates='pianist')
-
   coordinator = db.relationship('Coordinator', back_populates='pianists')
 
 class Student(db.Model, SerializerMixin):
@@ -50,7 +48,6 @@ class Student(db.Model, SerializerMixin):
   coordinator_id = db.Column(db.Integer, db.ForeignKey('Coordinators.id'))
 
   events = db.relationship('Event', back_populates='student')
-  pianists = db.relationship('Pianist', back_populates='students')
 
   coordinator = db.relationship('Coordinator', back_populates='students')
 

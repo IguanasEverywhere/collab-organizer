@@ -8,12 +8,15 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, Coordinator, Pianist, Student
+from models import db, Coordinator, Pianist, Student, Event
 
 if __name__ == '__main__':
     instruments = ["violin", "viola", "cello", "double bass", "flute", "oboe", "clarinet", "bassoon", "saxophone", "trumpet", "french horn", "tuba", "trombone", "voice"]
 
     roles = ["student", "TA", "staff"]
+
+    event_types = ["Junior Recital", "Senior Recital", "Jury", "Masterclass"]
+    event_lengths = [30, 45, 60, 90]
 
     fake = Faker()
     with app.app_context():
@@ -23,6 +26,7 @@ if __name__ == '__main__':
         Coordinator.query.delete()
         Pianist.query.delete()
         Student.query.delete()
+        Event.query.delete()
 
 
         coord1 = Coordinator(
@@ -49,6 +53,18 @@ if __name__ == '__main__':
                 email=fake.email()
             )
             db.session.add(new_pianist)
+
+        for x in range (20):
+            new_event = Event(
+                event_type = choice(event_types),
+                event_length = choice(event_lengths),
+                event_time = fake.date_time(),
+                location = fake.address(),
+                student_id = randint(1, 50),
+                pianist_id = randint(1, 10),
+                coordinator_id = 1,
+            )
+            db.session.add(new_event)
 
         db.session.commit()
 
