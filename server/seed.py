@@ -31,10 +31,15 @@ if __name__ == '__main__':
 
         coord1 = Coordinator(
             username="Scott",
-            organization="some school"
+            organization="Brock Family Music"
+        )
+        coord2 = Coordinator(
+            username="Doreen",
+            organization="University of Iowa"
         )
 
         db.session.add(coord1)
+        db.session.add(coord2)
         db.session.commit()
 
         for x in range(50):
@@ -42,7 +47,8 @@ if __name__ == '__main__':
                 name=fake.name(),
                 instrument=choice(instruments),
                 teacher=fake.name(),
-                email=fake.email()
+                email=fake.email(),
+                coordinator_id=1
             )
             db.session.add(new_student)
 
@@ -50,7 +56,8 @@ if __name__ == '__main__':
             new_pianist = Pianist(
                 name=fake.name(),
                 role=choice(roles),
-                email=fake.email()
+                email=fake.email(),
+                coordinator_id=1
             )
             db.session.add(new_pianist)
 

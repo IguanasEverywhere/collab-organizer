@@ -8,7 +8,7 @@ from config import db
 class Coordinator(db.Model, SerializerMixin):
   __tablename__ = "Coordinators"
 
-  serialize_rules = ('-students.coordinator', '-pianists.coordinator, -events.coordinator',)
+  serialize_rules = ('-students.coordinator', '-pianists.coordinator', '-events.coordinator',)
 
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String)
@@ -21,6 +21,7 @@ class Coordinator(db.Model, SerializerMixin):
 class Pianist(db.Model, SerializerMixin):
   __tablename__ = "Pianists"
 
+  #fix serialize to get rid of non-existant relationships in this and Student
   serialize_rules = ('-students.pianists', '-events.pianist', '-coordinator.pianists',)
 
   id = db.Column(db.Integer, primary_key=True)
@@ -36,7 +37,7 @@ class Pianist(db.Model, SerializerMixin):
 class Student(db.Model, SerializerMixin):
   __tablename__ = "Students"
 
-  serialize_rules = ('-events.student', '-pianists.students, -coordinator.students',)
+  serialize_rules = ('-events.student', '-pianists.students', '-coordinator.students',)
 
   id = db.Column(db.Integer, primary_key=True)
 
@@ -54,7 +55,7 @@ class Student(db.Model, SerializerMixin):
 class Event(db.Model, SerializerMixin):
   __tablename__ = "Events"
 
-  serialize_rules = ('-student.events', '-pianist.events, -coordinator.events',)
+  serialize_rules = ('-student.events', '-pianist.events', '-coordinator.events',)
 
   id = db.Column(db.Integer, primary_key=True)
 
