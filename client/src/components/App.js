@@ -3,18 +3,22 @@ import { Switch, Route } from "react-router-dom";
 import AllStudents from '../components/AllStudents/AllStudents.jsx';
 import AllPianists from '../components/AllPianists/AllPianists.jsx';
 import AllEvents from '../components/AllEvents/AllEvents.jsx';
+import StudentInfo from '../components/StudentInfo/StudentInfo.jsx';
 
 function App() {
   return (
     <Switch>
-      <Route path='/students'>
+      <Route exact path='/students'>
         <AllStudents />
       </Route>
-      <Route path='/pianists'>
+      <Route exact path='/pianists'>
         <AllPianists />
       </Route>
-      <Route path='/events'>
+      <Route exact path='/events'>
         <AllEvents />
+      </Route>
+      <Route exact path='/students/:id'>
+        <StudentInfo />
       </Route>
     </Switch>
   );
