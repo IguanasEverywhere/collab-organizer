@@ -8,21 +8,21 @@ from config import db
 class Coordinator(db.Model, SerializerMixin):
   __tablename__ = "Coordinators"
 
-  serialize_rules = ('-students.coordinator', '-pianists.coordinator', '-events.coordinator',)
+  # getting rid of relationships for now...relating to students also had relation to events and coordinator, but events also had relationship to coordinator. Adding -coordinator to each table was insufficient, maybe because relationships are traversed even if not serialized?
+
 
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String)
   organization = db.Column(db.String)
 
-  students = db.relationship('Student', back_populates='coordinator')
-  pianists = db.relationship('Pianist', back_populates='coordinator')
-  events = db.relationship('Event', back_populates='coordinator')
+  # students = db.relationship('Student', back_populates='coordinator')
+  # pianists = db.relationship('Pianist', back_populates='coordinator')
+  # events = db.relationship('Event', back_populates='coordinator')
 
 class Pianist(db.Model, SerializerMixin):
   __tablename__ = "Pianists"
 
-  #fix serialize to get rid of non-existant relationships in this and Student
-  serialize_rules = ('-students.pianists', '-events.pianist', '-coordinator.pianists',)
+  serialize_rules = ('-events.pianist',)
 
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String)
@@ -32,12 +32,11 @@ class Pianist(db.Model, SerializerMixin):
   coordinator_id = db.Column(db.Integer, db.ForeignKey('Coordinators.id'))
 
   events = db.relationship('Event', back_populates='pianist')
-  coordinator = db.relationship('Coordinator', back_populates='pianists')
 
 class Student(db.Model, SerializerMixin):
   __tablename__ = "Students"
 
-  serialize_rules = ('-events.student', '-pianists.students', '-coordinator.students',)
+  serialize_rules = ('-events.student',)
 
   id = db.Column(db.Integer, primary_key=True)
 
@@ -50,12 +49,10 @@ class Student(db.Model, SerializerMixin):
 
   events = db.relationship('Event', back_populates='student')
 
-  coordinator = db.relationship('Coordinator', back_populates='students')
-
 class Event(db.Model, SerializerMixin):
   __tablename__ = "Events"
 
-  serialize_rules = ('-student.events', '-pianist.events', '-coordinator.events',)
+  serialize_rules = ('-student.events', '-pianist.events',)
 
   id = db.Column(db.Integer, primary_key=True)
 
@@ -70,5 +67,4 @@ class Event(db.Model, SerializerMixin):
 
   student = db.relationship('Student', back_populates='events')
   pianist = db.relationship('Pianist', back_populates='events')
-  coordinator = db.relationship('Coordinator', back_populates='events')
 
