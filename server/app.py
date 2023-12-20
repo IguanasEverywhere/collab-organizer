@@ -54,6 +54,7 @@ class StudentInfo(Resource):
 
 class Events(Resource):
     def get(self):
+        #modify to include only events that match with coordinator id
         all_events = Event.query.all()
         event_dicts = [event.to_dict() for event in all_events]
 
