@@ -42,7 +42,7 @@ if __name__ == '__main__':
         db.session.add(coord2)
         db.session.commit()
 
-        for x in range(50):
+        for x in range(30):
             new_student = Student(
                 name=fake.name(),
                 instrument=choice(instruments),
@@ -53,11 +53,30 @@ if __name__ == '__main__':
             db.session.add(new_student)
 
         for x in range(10):
+            new_student = Student(
+                name=fake.name(),
+                instrument=choice(instruments),
+                teacher=fake.name(),
+                email=fake.email(),
+                coordinator_id=2
+            )
+            db.session.add(new_student)
+
+        for x in range(6):
             new_pianist = Pianist(
                 name=fake.name(),
                 role=choice(roles),
                 email=fake.email(),
                 coordinator_id=1
+            )
+            db.session.add(new_pianist)
+
+        for x in range(4):
+            new_pianist = Pianist(
+                name=fake.name(),
+                role=choice(roles),
+                email=fake.email(),
+                coordinator_id=2
             )
             db.session.add(new_pianist)
 
@@ -70,6 +89,18 @@ if __name__ == '__main__':
                 student_id = randint(1, 50),
                 pianist_id = randint(1, 10),
                 coordinator_id = 1,
+            )
+            db.session.add(new_event)
+
+        for x in range (20):
+            new_event = Event(
+                event_type = choice(event_types),
+                event_length = choice(event_lengths),
+                event_time = fake.date_time(),
+                location = fake.address(),
+                student_id = randint(1, 50),
+                pianist_id = randint(1, 10),
+                coordinator_id = 2,
             )
             db.session.add(new_event)
 
