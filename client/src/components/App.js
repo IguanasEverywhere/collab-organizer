@@ -4,6 +4,7 @@ import AllStudents from '../components/AllStudents/AllStudents.jsx';
 import AllPianists from '../components/AllPianists/AllPianists.jsx';
 import AllEvents from '../components/AllEvents/AllEvents.jsx';
 import StudentInfo from '../components/StudentInfo/StudentInfo.jsx';
+import PianistInfo from '../components/PianistInfo/PianistInfo.jsx';
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
       </Route>
       <Route exact path='/students/:id'>
         <StudentInfo />
+      </Route>
+      <Route exact path='/pianists/:id'>
+        <PianistInfo />
       </Route>
     </Switch>
   );
