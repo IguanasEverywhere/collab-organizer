@@ -98,7 +98,7 @@ if __name__ == '__main__':
                 event_length = choice(event_lengths),
                 event_time = fake.date_time(),
                 location = fake.address(),
-                student_id = randint(31, 50),
+                student_id = randint(31, 40),
                 pianist_id = randint(7, 10),
                 coordinator_id = 2,
             )

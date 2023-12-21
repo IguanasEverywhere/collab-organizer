@@ -34,6 +34,14 @@ class Pianists(Resource):
         response = make_response(pianist_dicts, 200)
         return response
 
+class PianistInfo(Resource):
+    def get(self, id):
+        pianist = Pianist.query.filter(Pianist.id==id).first()
+        pianist_dict = pianist.to_dict()
+
+        response = make_response(pianist_dict, 200)
+        return response
+
 
 class Students(Resource):
     def get(self):
@@ -67,6 +75,7 @@ api.add_resource(Pianists, '/api/pianists', endpoint='/api/pianists')
 api.add_resource(Students, '/api/students', endpoint='/api/students')
 api.add_resource(Events, '/api/events', endpoint='/api/events')
 api.add_resource(StudentInfo, '/api/students/<int:id>', endpoint='/api/students/<int:id>')
+api.add_resource(PianistInfo, '/api/pianists/<int:id>', endpoint='/api/pianists/<int:id>')
 
 
 if __name__ == '__main__':
