@@ -86,8 +86,8 @@ if __name__ == '__main__':
                 event_length = choice(event_lengths),
                 event_time = fake.date_time(),
                 location = fake.address(),
-                student_id = randint(1, 50),
-                pianist_id = randint(1, 10),
+                student_id = randint(1, 30),
+                pianist_id = randint(1, 6),
                 coordinator_id = 1,
             )
             db.session.add(new_event)
@@ -98,8 +98,8 @@ if __name__ == '__main__':
                 event_length = choice(event_lengths),
                 event_time = fake.date_time(),
                 location = fake.address(),
-                student_id = randint(1, 50),
-                pianist_id = randint(1, 10),
+                student_id = randint(31, 50),
+                pianist_id = randint(7, 10),
                 coordinator_id = 2,
             )
             db.session.add(new_event)
