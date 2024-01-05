@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Counter } from '../../features/Counter';
+import { useSelector } from 'react-redux';
 
 function AllPianists() {
 
   const [allPianists, setAllPianists] = useState([]);
+
+  const viewMode = useSelector(state => state.viewMode.value)
 
   useEffect(() => {
     fetch('/api/pianists')
@@ -14,7 +16,7 @@ function AllPianists() {
   return (
     <div>
       <h1>All pianists</h1>
-      <Counter />
+      <h4>{viewMode}</h4>
       <ul>
         {allPianists.map((pianist) => <li key={pianist.id}>{pianist.name}</li>)}
       </ul>

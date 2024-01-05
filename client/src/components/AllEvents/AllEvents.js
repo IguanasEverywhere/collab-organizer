@@ -1,13 +1,14 @@
 import React from 'react';
-import { Counter } from '../../features/Counter';
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 function AllEvents() {
+
+  const viewMode = useSelector(state => state.viewMode)
+  console.log(viewMode)
   return (
     <div>
       All Events
-      <Counter />
-      <Link to="/pianists"><button>Go To Pianists</button></Link>
+      <h3>{viewMode.value}</h3>
     </div>
   )
 }

@@ -1,31 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import AllStudents from '../components/AllStudents/AllStudents';
 import AllPianists from '../components/AllPianists/AllPianists';
 import AllEvents from '../components/AllEvents/AllEvents';
 import StudentInfo from '../components/StudentInfo/StudentInfo';
 import PianistInfo from '../components/PianistInfo/PianistInfo';
+import NavBar from '../components/NavBar/NavBar';
 
 
 function App() {
+
+  // all the way up here, check if user is logged in, and if they are, return NavBar, if not, home login page
+  // let all components handle "before each" checks for logged in status, and update this parent state if so?
   return (
-    <Switch>
-      <Route exact path='/students'>
-        <AllStudents />
-      </Route>
-      <Route exact path='/pianists'>
-        <AllPianists />
-      </Route>
-      <Route exact path='/events'>
-        <AllEvents />
-      </Route>
-      <Route exact path='/students/:id'>
-        <StudentInfo />
-      </Route>
-      <Route exact path='/pianists/:id'>
-        <PianistInfo />
-      </Route>
-    </Switch>
+    <>
+      <NavBar />
+      <Switch>
+        <Route exact path='/students'>
+          <AllStudents />
+        </Route>
+        <Route exact path='/pianists'>
+          <AllPianists />
+        </Route>
+        <Route exact path='/events'>
+          <AllEvents />
+        </Route>
+        <Route exact path='/students/:id'>
+          <StudentInfo />
+        </Route>
+        <Route exact path='/pianists/:id'>
+          <PianistInfo />
+        </Route>
+      </Switch>
+    </>
   );
 }
 
