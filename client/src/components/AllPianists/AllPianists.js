@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Counter } from '../../features/Counter';
 
 function AllPianists() {
 
@@ -13,6 +14,7 @@ function AllPianists() {
   return (
     <div>
       <h1>All pianists</h1>
+      <Counter />
       <ul>
         {allPianists.map((pianist) => <li key={pianist.id}>{pianist.name}</li>)}
       </ul>
