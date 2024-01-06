@@ -6,6 +6,7 @@ import AllEvents from '../components/AllEvents/AllEvents';
 import StudentInfo from '../components/StudentInfo/StudentInfo';
 import PianistInfo from '../components/PianistInfo/PianistInfo';
 import NavBar from '../components/NavBar/NavBar';
+import Login from '../components/Login/Login';
 
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
         </Route>
         <Route exact path='/pianists/:id'>
           <PianistInfo />
+        </Route>
+        <Route exact path='/login'>
+          <Login />
         </Route>
       </Switch>
     </>
