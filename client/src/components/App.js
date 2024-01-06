@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import AllStudents from '../components/AllStudents/AllStudents';
 import AllPianists from '../components/AllPianists/AllPianists';
 import AllEvents from '../components/AllEvents/AllEvents';
@@ -15,12 +15,18 @@ function App() {
 
   const loggedInUser = useSelector(state => state.loggedInUser.value)
 
+  if (!loggedInUser.payload) {
+    return (
+      <>
+        <Login />
+      </>
+    )
+  }
+
   return (
     <>
-      {!loggedInUser.payload ? <Login /> :
-      <>
-      <NavBar />
       <Switch>
+        <NavBar />
         <Route exact path='/students'>
           <AllStudents />
         </Route>
@@ -36,12 +42,7 @@ function App() {
         <Route exact path='/pianists/:id'>
           <PianistInfo />
         </Route>
-        <Route exact path='/login'>
-          <Login />
-        </Route>
       </Switch>
-      </>
-      }
     </>
   );
 }

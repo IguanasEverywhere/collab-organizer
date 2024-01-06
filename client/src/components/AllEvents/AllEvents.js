@@ -11,8 +11,8 @@ function AllEvents() {
   return (
     <div>
       All Events
-      <h3>{viewMode.value}</h3>
-      <h1>{loggedInUser.value}</h1>
+      <h3>VIEW MODE: {viewMode.value}</h3>
+      <h1>USERNAME: {loggedInUser.value.payload.username}</h1>
     </div>
   )
 }
