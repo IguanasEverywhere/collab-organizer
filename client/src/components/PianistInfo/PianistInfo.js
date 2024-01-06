@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function PianistInfo() {
 
@@ -29,6 +30,8 @@ function PianistInfo() {
   // update this to include more info
   let pianistEvents = pianistInfo.events.length > 0 ? pianistInfo.events.map((event) => <li key={event.id}>{event.student.name} | {event.event_type}</li>) : <p>No Events</p>
 
+  const coordinator = useSelector(state => state.loggedInUser.value)
+
   return (
     <div>
       <p>{pianistInfo.name}</p>
@@ -37,6 +40,7 @@ function PianistInfo() {
       <ul>
         {pianistEvents}
       </ul>
+      <h2>{coordinator.payload.name}</h2>
     </div>
   )
 }

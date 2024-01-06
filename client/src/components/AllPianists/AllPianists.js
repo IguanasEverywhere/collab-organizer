@@ -6,6 +6,7 @@ function AllPianists() {
   const [allPianists, setAllPianists] = useState([]);
 
   const viewMode = useSelector(state => state.viewMode.value)
+  const coordinator = useSelector(state => state.loggedInUser.value)
 
   useEffect(() => {
     fetch('/api/pianists')
@@ -20,6 +21,7 @@ function AllPianists() {
       <ul>
         {allPianists.map((pianist) => <li key={pianist.id}>{pianist.name}</li>)}
       </ul>
+      <h2>{coordinator.payload.username}</h2>
     </div>
   )
 }
