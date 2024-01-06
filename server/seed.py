@@ -31,11 +31,15 @@ if __name__ == '__main__':
 
         coord1 = Coordinator(
             username="Scott",
-            organization="Brock Family Music"
+            organization="Brock Family Music",
+            viewModePreference="light",
+            password_hash="mypw123"
         )
         coord2 = Coordinator(
             username="Doreen",
-            organization="University of Iowa"
+            organization="University of Iowa",
+            viewModePreference="dark",
+            password_hash="hello456"
         )
 
         db.session.add(coord1)

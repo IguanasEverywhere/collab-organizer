@@ -8,6 +8,8 @@ from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
+from flask_bcrypt import Bcrypt
+
 # Local imports
 
 # Instantiate app, set attributes
@@ -26,6 +28,8 @@ db.init_app(app)
 
 # Instantiate REST API
 api = Api(app)
+
+bcrypt = Bcrypt(app)
 
 # Instantiate CORS
 CORS(app)
