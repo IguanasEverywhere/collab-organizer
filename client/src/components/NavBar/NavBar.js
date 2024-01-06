@@ -14,12 +14,19 @@ function NavBar() {
     dispatch(changeView())
   }
 
+  const handleLogout = () => {
+    fetch('/api/logout', {
+      method: 'DELETE',
+    }).then(r => console.log(r))
+  }
+
   return (
     <div>
       NavBar
       <h5>{viewMode}</h5>
       <Link to='/events'>Events</Link>
       <Link to='/pianists'>Pianists</Link>
+      <p onClick={handleLogout}>Logout</p>
       <button onClick={handleDarkClick}>Toggle Light Mode / Dark Mode</button>
     </div>
   )

@@ -69,6 +69,29 @@ class Events(Resource):
         response = make_response(event_dicts, 200)
         return response
 
+class Login(Resource):
+    def post(self):
+
+        username = request.get_json()['username']
+        coordinator = Coordinator.query.filter(Coordinator.username == username).first()
+
+        password = request.get_json()['password']
+
+        if coordinator.authenticate(password):
+            session['logged_in_coordinator_id'] = coordinator.id
+            response = make_response(coordinator.to_dict(), 200)
+        else:
+            response = make_response({"Error": "Login Failed"}, 401)
+
+        return response
+
+class Logout(Resource):
+    def delete(self):
+        session['logged_in_coordinator_id'] = None
+        response = make_response({"Logged out": "Success"}, 200)
+        return response
+
+
 
 api.add_resource(Coordinators, '/api/coordinator', endpoint='/api/coordinator')
 api.add_resource(Pianists, '/api/pianists', endpoint='/api/pianists')
@@ -76,6 +99,8 @@ api.add_resource(Students, '/api/students', endpoint='/api/students')
 api.add_resource(Events, '/api/events', endpoint='/api/events')
 api.add_resource(StudentInfo, '/api/students/<int:id>', endpoint='/api/students/<int:id>')
 api.add_resource(PianistInfo, '/api/pianists/<int:id>', endpoint='/api/pianists/<int:id>')
+api.add_resource(Login, '/api/login', endpoint='/api/login')
+api.add_resource(Logout, '/api/logout', endpoint='/api/logout')
 
 
 if __name__ == '__main__':
