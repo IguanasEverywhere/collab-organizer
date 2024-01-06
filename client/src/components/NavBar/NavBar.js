@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeView } from '../../reduxSlices/darkModeSlice';
 import {changeLoggedInUser} from '../../reduxSlices/loggedInUserSlice';
+import styles from './NavBar.module.css';
 
 
 function NavBar() {
@@ -24,7 +25,7 @@ function NavBar() {
   }
 
   return (
-    <div>
+    <div className={styles.header}>
       NavBar
       <h5>{viewMode}</h5>
       <Link to='/events'>Events</Link>

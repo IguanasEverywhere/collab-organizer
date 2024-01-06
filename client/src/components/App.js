@@ -18,15 +18,17 @@ function App() {
   if (!loggedInUser.payload) {
     return (
       <>
+        {/* may need to do a redirect here for URL */}
         <Login />
       </>
     )
   }
 
+
   return (
     <>
+      <NavBar />
       <Switch>
-        <NavBar />
         <Route exact path='/students'>
           <AllStudents />
         </Route>
@@ -45,6 +47,7 @@ function App() {
       </Switch>
     </>
   );
+
 }
 
 export default App;
