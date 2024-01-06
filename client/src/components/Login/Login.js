@@ -1,9 +1,18 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useSelector, useDispatch } from 'react-redux';
+import { changeLoggedInUser } from '../../reduxSlices/loggedInUserSlice';
 
 
 function Login() {
+
+  const user = useSelector(state => state.loggedInUser.value);
+  const dispatch = useDispatch();
+
+  const handleValidatedUser = (loggedInCoord) => {
+    dispatch(changeLoggedInUser(loggedInCoord))
+  }
 
   const schema = yup.object().shape({
     username: yup.string().required("Please enter username"),
@@ -24,7 +33,8 @@ function Login() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(values)
-      }).then(r => console.log(r))
+      }).then(r => r.json())
+        .then(loggedInCoord => handleValidatedUser(loggedInCoord))
     }
   })
 

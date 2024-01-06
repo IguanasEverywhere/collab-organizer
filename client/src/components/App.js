@@ -8,11 +8,17 @@ import PianistInfo from '../components/PianistInfo/PianistInfo';
 import NavBar from '../components/NavBar/NavBar';
 import Login from '../components/Login/Login';
 
+import { useSelector } from 'react-redux';
+
 
 function App() {
 
+  const loggedInUser = useSelector(state => state.loggedInUser.value)
+
   return (
     <>
+      {!loggedInUser.payload ? <Login /> :
+      <>
       <NavBar />
       <Switch>
         <Route exact path='/students'>
@@ -34,6 +40,8 @@ function App() {
           <Login />
         </Route>
       </Switch>
+      </>
+      }
     </>
   );
 }

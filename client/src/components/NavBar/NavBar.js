@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeView } from '../../reduxSlices/darkModeSlice';
+import {changeLoggedInUser} from '../../reduxSlices/loggedInUserSlice';
 
 
 function NavBar() {
@@ -14,10 +15,12 @@ function NavBar() {
     dispatch(changeView())
   }
 
+
+
   const handleLogout = () => {
     fetch('/api/logout', {
       method: 'DELETE',
-    }).then(r => console.log(r))
+    }).then(r => dispatch(changeLoggedInUser(null)))
   }
 
   return (
