@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import AllStudents from '../components/AllStudents/AllStudents';
 import AllPianists from '../components/AllPianists/AllPianists';
 import AllEvents from '../components/AllEvents/AllEvents';
@@ -7,17 +7,19 @@ import StudentInfo from '../components/StudentInfo/StudentInfo';
 import PianistInfo from '../components/PianistInfo/PianistInfo';
 import NavBar from '../components/NavBar/NavBar';
 import Login from '../components/Login/Login';
+import WelcomeLanding from '../components/WelcomeLanding/WelcomeLanding';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLoggedInUser } from '../reduxSlices/loggedInUserSlice';
-
-// do useEffect here to get current user session, dispatch to the loggedin user state what comes back
 
 
 function App() {
 
   const dispatch = useDispatch();
   const loggedInUser = useSelector(state => state.loggedInUser.value)
+
+  const location = useLocation();
+
 
   useEffect(() => {
     fetch('/api/check-session')
@@ -27,24 +29,30 @@ function App() {
       })
   }, [dispatch])
 
-  console.log("LOGGED IN USER", loggedInUser)
-
+  let redirectPath = location.pathname === '/' ? '/welcome' : location.pathname
 
   if (!loggedInUser.payload) {
     return (
       <>
-        {/* may need to do a redirect here for URL */}
-        <Login />
+        <Switch>
+          <Route exact to='/login'>
+            <Login />
+          </Route>
+        </Switch>
       </>
     )
   }
 
   else {
-    //console.log("here's the else")
+
     return (
       <>
+        <Redirect to={redirectPath} />
         <NavBar />
         <Switch>
+          <Route exact path='/welcome'>
+            <WelcomeLanding />
+          </Route>
           <Route exact path='/students'>
             <AllStudents />
           </Route>
@@ -64,7 +72,6 @@ function App() {
       </>
     );
   }
-
 }
 
 export default App;

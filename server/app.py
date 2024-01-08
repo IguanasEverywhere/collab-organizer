@@ -14,6 +14,7 @@ from models import Coordinator, Pianist, Student, Event
 
 # Views go here!
 @app.route('/')
+@app.route('/pianists')
 def index(id=0):
     return render_template("index.html")
 

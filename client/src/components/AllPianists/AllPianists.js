@@ -8,6 +8,8 @@ function AllPianists() {
   const viewMode = useSelector(state => state.viewMode.value)
   const coordinator = useSelector(state => state.loggedInUser.value)
 
+  console.log(coordinator)
+
   useEffect(() => {
     fetch('/api/pianists')
       .then(r => r.json())

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeView } from '../../reduxSlices/darkModeSlice';
 import {changeLoggedInUser} from '../../reduxSlices/loggedInUserSlice';
@@ -12,6 +12,7 @@ function NavBar() {
   const coordinator = useSelector(state => state.loggedInUser.value)
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
 
   const handleDarkClick = () => {
@@ -21,7 +22,10 @@ function NavBar() {
   const handleLogout = () => {
     fetch('/api/logout', {
       method: 'DELETE',
-    }).then(r => dispatch(changeLoggedInUser(null)))
+    }).then(r => {
+      history.push('/')
+      dispatch(changeLoggedInUser(null))
+    })
   }
 
   return (
