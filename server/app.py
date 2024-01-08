@@ -92,6 +92,15 @@ class Logout(Resource):
         return response
 
 
+class CheckSession(Resource):
+    def get(self):
+        if session.get('logged_in_coordinator_id'):
+            current_user = Coordinator.query.filter(Coordinator.id==session['logged_in_coordinator_id']).first()
+
+            return current_user.to_dict(), 200
+        else:
+            return None
+
 
 api.add_resource(Coordinators, '/api/coordinator', endpoint='/api/coordinator')
 api.add_resource(Pianists, '/api/pianists', endpoint='/api/pianists')
@@ -101,6 +110,7 @@ api.add_resource(StudentInfo, '/api/students/<int:id>', endpoint='/api/students/
 api.add_resource(PianistInfo, '/api/pianists/<int:id>', endpoint='/api/pianists/<int:id>')
 api.add_resource(Login, '/api/login', endpoint='/api/login')
 api.add_resource(Logout, '/api/logout', endpoint='/api/logout')
+api.add_resource(CheckSession, '/api/check-session', endpoint='/api/check-session')
 
 
 if __name__ == '__main__':

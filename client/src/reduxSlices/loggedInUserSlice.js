@@ -7,7 +7,7 @@ export const loggedInUserSlice = createSlice({
   },
   reducers: {
     changeLoggedInUser: (state, user) => {
-      state.value = user
+        state.value = user
     }
   }
 })

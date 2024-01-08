@@ -11,15 +11,12 @@ function NavBar() {
   const viewMode = useSelector(state => state.viewMode.value)
   const coordinator = useSelector(state => state.loggedInUser.value)
 
-  console.log(coordinator)
   const dispatch = useDispatch();
 
 
   const handleDarkClick = () => {
     dispatch(changeView())
   }
-
-
 
   const handleLogout = () => {
     fetch('/api/logout', {
@@ -35,7 +32,7 @@ function NavBar() {
       <Link to='/pianists'>Pianists</Link>
       <p onClick={handleLogout}>Logout</p>
       <button onClick={handleDarkClick}>Toggle Light Mode / Dark Mode</button>
-      <h2>{coordinator.payload.username}</h2>
+      <h2>{coordinator.username}</h2>
     </div>
   )
 }
