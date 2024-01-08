@@ -11,6 +11,7 @@ import WelcomeLanding from '../components/WelcomeLanding/WelcomeLanding';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLoggedInUser } from '../reduxSlices/loggedInUserSlice';
+import { changeView } from '../reduxSlices/darkModeSlice';
 
 
 
@@ -24,16 +25,19 @@ function App() {
 
 
   useEffect(() => {
+
     fetch('/api/check-session')
       .then(r => r.json())
       .then(loggedInData => {
-        dispatch(changeLoggedInUser(loggedInData))
+        dispatch(changeLoggedInUser(loggedInData));
       })
   }, [dispatch])
+
 
   let redirectPath = location.pathname === '/' ? '/welcome' : location.pathname
 
   if (!loggedInUser.payload) {
+    dispatch(changeView('light'))
     return (
       <>
         <Switch>
@@ -46,6 +50,7 @@ function App() {
   }
 
   else {
+    dispatch(changeView(loggedInUser.payload.viewModePreference))
 
     return (
       <>

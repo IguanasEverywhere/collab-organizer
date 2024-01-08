@@ -7,6 +7,7 @@ export const darkModeSlice = createSlice({
   },
   reducers: {
     changeView: (state, newView) => {
+      console.log('CHANGEVIEW INVOKED')
       state.value = newView.payload
     }
   }
