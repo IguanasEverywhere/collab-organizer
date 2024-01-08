@@ -15,6 +15,7 @@ from models import Coordinator, Pianist, Student, Event
 # Views go here!
 @app.route('/')
 @app.route('/pianists')
+@app.route('/events')
 def index(id=0):
     return render_template("index.html")
 
@@ -26,6 +27,20 @@ class Coordinators(Resource):
 
         response = make_response(coordinator_dicts, 200)
         return response
+
+class CoordinatorInfo(Resource):
+    def get(self, id):
+        coordinator = Coordinator.query.filter(Coordinator.id==id).first()
+
+        response = make_response(coordinator.to_dict(), 200)
+        return response
+
+    def patch(self, id):
+        coordinator = Coordinator.query.filter(Coordinator.id==id).first()
+        request_info = request.get_json()
+        coordinator.viewModePreference = request_info['viewMode']
+
+        db.session.commit()
 
 class Pianists(Resource):
     def get(self):
@@ -109,6 +124,7 @@ api.add_resource(Students, '/api/students', endpoint='/api/students')
 api.add_resource(Events, '/api/events', endpoint='/api/events')
 api.add_resource(StudentInfo, '/api/students/<int:id>', endpoint='/api/students/<int:id>')
 api.add_resource(PianistInfo, '/api/pianists/<int:id>', endpoint='/api/pianists/<int:id>')
+api.add_resource(CoordinatorInfo, '/api/coordinator/<int:id>', endpoint='/api/coordinator/<int:id>')
 api.add_resource(Login, '/api/login', endpoint='/api/login')
 api.add_resource(Logout, '/api/logout', endpoint='/api/logout')
 api.add_resource(CheckSession, '/api/check-session', endpoint='/api/check-session')

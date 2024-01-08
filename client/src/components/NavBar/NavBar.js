@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeView } from '../../reduxSlices/darkModeSlice';
-import {changeLoggedInUser} from '../../reduxSlices/loggedInUserSlice';
+import { changeLoggedInUser } from '../../reduxSlices/loggedInUserSlice';
 import styles from './NavBar.module.css';
 
 
@@ -10,6 +10,9 @@ function NavBar() {
 
   const viewMode = useSelector(state => state.viewMode.value)
   const coordinator = useSelector(state => state.loggedInUser.value)
+
+  console.log("FROM NAVBAR, COORDINATOR", coordinator.payload.viewModePreference)
+  console.log("FROM NAVBAR, ID", coordinator.payload.id)
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,12 +23,19 @@ function NavBar() {
   }
 
   const handleLogout = () => {
-    fetch('/api/logout', {
-      method: 'DELETE',
-    }).then(r => {
-      history.push('/')
-      dispatch(changeLoggedInUser(null))
-    })
+    fetch(`/api/coordinator/${coordinator.payload.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({'viewMode': viewMode})
+    }).then(r => r.json()).then(
+      fetch('/api/logout', {
+        method: 'DELETE',
+      }).then(r => {
+        history.push('/')
+        dispatch(changeLoggedInUser(null))
+      }))
   }
 
   return (
