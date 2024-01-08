@@ -11,15 +11,13 @@ function NavBar() {
   const viewMode = useSelector(state => state.viewMode.value)
   const coordinator = useSelector(state => state.loggedInUser.value)
 
-  console.log("FROM NAVBAR, COORDINATOR", coordinator.payload.viewModePreference)
-  console.log("FROM NAVBAR, ID", coordinator.payload.id)
-
   const dispatch = useDispatch();
   const history = useHistory();
 
 
   const handleDarkClick = () => {
-    dispatch(changeView())
+    let newView = viewMode === 'light' ? 'dark' : 'light'
+    dispatch(changeView(newView))
   }
 
   const handleLogout = () => {

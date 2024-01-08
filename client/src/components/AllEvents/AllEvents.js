@@ -6,8 +6,6 @@ function AllEvents() {
   const viewMode = useSelector(state => state.viewMode)
   const loggedInUser = useSelector(state => state.loggedInUser)
 
-  console.log(viewMode)
-  console.log(loggedInUser)
   return (
     <div>
       All Events

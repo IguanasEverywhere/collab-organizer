@@ -6,12 +6,8 @@ export const darkModeSlice = createSlice({
     value: 'light'
   },
   reducers: {
-    changeView: state => {
-      if (state.value === 'light') {
-        state.value = 'dark'
-      } else {
-        state.value = 'light'
-      }
+    changeView: (state, newView) => {
+      state.value = newView.payload
     }
   }
 })
