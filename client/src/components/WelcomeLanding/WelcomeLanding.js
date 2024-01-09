@@ -10,7 +10,7 @@ function WelcomeLanding() {
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
   return (
-    <div className={currentStyle.body}>
+    <div className={currentStyle.mainBody}>
       <h1>Welcome!</h1>
     </div>
   )

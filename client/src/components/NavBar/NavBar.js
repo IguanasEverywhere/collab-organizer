@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeView } from '../../reduxSlices/darkModeSlice';
 import { changeLoggedInUser } from '../../reduxSlices/loggedInUserSlice';
-import styles from './NavBar.module.css';
+import lightStyles from './NavBarLight.module.css';
 import darkStyles from './NavBarDark.module.css';
 
 
@@ -36,12 +36,10 @@ function NavBar() {
       }))
   }
 
-  const currentStyle = viewMode === "light" ? styles : darkStyles
+  const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
   return (
     <div className={currentStyle.header}>
-      NavBar
-      <h5>{viewMode}</h5>
       <Link to='/events'>Events</Link>
       <Link to='/pianists'>Pianists</Link>
       <Link to='/students'>Students</Link>

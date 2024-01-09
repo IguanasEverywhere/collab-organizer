@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import darkStyles from './AllPianistsDark.module.css';
+import lightStyles from './AllPianistsLight.module.css';
 
 function AllPianists() {
 
@@ -14,8 +16,10 @@ function AllPianists() {
       .then(pianistData => setAllPianists(pianistData))
   }, [])
 
+  const currentStyle = viewMode === "light" ? lightStyles : darkStyles
+
   return (
-    <div>
+    <div className={currentStyle.mainBody}>
       <h1>All pianists</h1>
       <h4>{viewMode}</h4>
       <ul>
