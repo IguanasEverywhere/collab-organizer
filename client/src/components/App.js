@@ -14,8 +14,6 @@ import { changeLoggedInUser } from '../reduxSlices/loggedInUserSlice';
 import { changeView } from '../reduxSlices/darkModeSlice';
 
 
-
-
 function App() {
 
   const dispatch = useDispatch();
@@ -23,9 +21,7 @@ function App() {
 
   const location = useLocation();
 
-
   useEffect(() => {
-
     fetch('/api/check-session')
       .then(r => r.json())
       .then(loggedInData => {

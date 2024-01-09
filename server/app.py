@@ -44,7 +44,9 @@ class CoordinatorInfo(Resource):
 
 class Pianists(Resource):
     def get(self):
-        all_pianists = Pianist.query.all()
+        current_coord = session.get('logged_in_coordinator_id')
+
+        all_pianists = Pianist.query.filter(Pianist.coordinator_id==current_coord).all()
         pianist_dicts = [pianist.to_dict() for pianist in all_pianists]
 
         response = make_response(pianist_dicts, 200)
@@ -61,7 +63,10 @@ class PianistInfo(Resource):
 
 class Students(Resource):
     def get(self):
-        all_students = Student.query.all()
+
+        current_coord = session.get('logged_in_coordinator_id')
+
+        all_students = Student.query.filter(Student.coordinator_id==current_coord).all()
         student_dicts = [student.to_dict() for student in all_students]
 
         response = make_response(student_dicts, 200)
@@ -78,8 +83,9 @@ class StudentInfo(Resource):
 
 class Events(Resource):
     def get(self):
-        #modify to include only events that match with coordinator id
-        all_events = Event.query.all()
+        current_coord = session.get('logged_in_coordinator_id')
+
+        all_events = Event.query.filter(Event.coordinator_id==current_coord).all()
         event_dicts = [event.to_dict() for event in all_events]
 
         response = make_response(event_dicts, 200)

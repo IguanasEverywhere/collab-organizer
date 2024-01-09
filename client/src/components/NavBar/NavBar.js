@@ -42,6 +42,7 @@ function NavBar() {
       <h5>{viewMode}</h5>
       <Link to='/events'>Events</Link>
       <Link to='/pianists'>Pianists</Link>
+      <Link to='/students'>Students</Link>
       <p onClick={handleLogout}>Logout</p>
       <button onClick={handleDarkClick}>Toggle Light Mode / Dark Mode</button>
       <h2>{coordinator.username}</h2>
