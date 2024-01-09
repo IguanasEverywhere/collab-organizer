@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeView } from '../../reduxSlices/darkModeSlice';
 import { changeLoggedInUser } from '../../reduxSlices/loggedInUserSlice';
 import styles from './NavBar.module.css';
+import darkStyles from './NavBarDark.module.css';
 
 
 function NavBar() {
@@ -13,7 +14,6 @@ function NavBar() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-
 
   const handleDarkClick = () => {
     let newView = viewMode === 'light' ? 'dark' : 'light'
@@ -26,7 +26,7 @@ function NavBar() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({'viewMode': viewMode})
+      body: JSON.stringify({ 'viewMode': viewMode })
     }).then(r => r.json()).then(
       fetch('/api/logout', {
         method: 'DELETE',
@@ -36,8 +36,10 @@ function NavBar() {
       }))
   }
 
+  const currentStyle = viewMode === "light" ? styles : darkStyles
+
   return (
-    <div className={styles.header}>
+    <div className={currentStyle.header}>
       NavBar
       <h5>{viewMode}</h5>
       <Link to='/events'>Events</Link>
