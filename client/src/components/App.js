@@ -36,8 +36,15 @@ function App() {
 
   let redirectPath = location.pathname === '/' ? '/welcome' : location.pathname
 
+  useEffect(() => {
+    if (!loggedInUser.payload) {
+      dispatch(changeView('light'))
+    } else {
+      dispatch(changeView(loggedInUser.payload.viewModePreference))
+    }
+  }, [dispatch, loggedInUser.payload])
+
   if (!loggedInUser.payload) {
-    dispatch(changeView('light'))
     return (
       <>
         <Switch>
@@ -50,8 +57,6 @@ function App() {
   }
 
   else {
-    dispatch(changeView(loggedInUser.payload.viewModePreference))
-
     return (
       <>
         <Redirect to={redirectPath} />
