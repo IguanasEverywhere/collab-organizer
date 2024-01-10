@@ -12,8 +12,20 @@
 
 .listing {
   background-color: orange;
-  width: 75%;
+  width: 50%;
   margin: 5px;
   padding: 0.5rem;
   border-radius: 15px;
+  font-weight: 600;
+  display: flex;
+  text-decoration: none;
+  color: #328889;
+}
+
+.listing:hover {
+  background-color: yellow;
+}
+
+h1 {
+  text-align: center;
 }
