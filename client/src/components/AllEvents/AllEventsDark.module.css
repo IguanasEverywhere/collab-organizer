@@ -3,3 +3,7 @@
   color: white;
   height: 100vh;
 }
+
+.eventsListing {
+  border: 2px solid red;
+}

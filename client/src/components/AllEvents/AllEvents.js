@@ -19,16 +19,13 @@ function AllEvents() {
 
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
-  console.log(allEvents)
-
-
   return (
     <div className={currentStyle.mainBody}>
       <h1>All Events for Coordinator: {loggedInUser.value.payload.username}</h1>
 
-      <ul>
-        {allEvents.map((event) => <li key={event.id}>{event.event_type} | {event.event_time} | {event.student.name} | {event.student.instrument}</li>)}
-      </ul>
+      <div className={currentStyle.eventsListing}>
+          {allEvents.map((event) => <div key={event.id} className={currentStyle.listing}>{event.event_time} | {event.event_type} | {event.student.name} | {event.student.instrument}</div>)}
+      </div>
     </div>
   )
 }

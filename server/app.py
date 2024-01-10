@@ -85,7 +85,7 @@ class Events(Resource):
     def get(self):
         current_coord = session.get('logged_in_coordinator_id')
 
-        all_events = Event.query.filter(Event.coordinator_id==current_coord).all()
+        all_events = Event.query.filter(Event.coordinator_id==current_coord).order_by(Event.event_time).all()
         event_dicts = [event.to_dict() for event in all_events]
 
         for event in event_dicts:

@@ -3,3 +3,17 @@
   color: black;
   height: 100vh;
 }
+
+.eventsListing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listing {
+  background-color: orange;
+  width: 75%;
+  margin: 5px;
+  padding: 0.5rem;
+  border-radius: 15px;
+}
