@@ -88,6 +88,10 @@ class Events(Resource):
         all_events = Event.query.filter(Event.coordinator_id==current_coord).all()
         event_dicts = [event.to_dict() for event in all_events]
 
+        for event in event_dicts:
+            student = Student.query.filter(Student.id==event['student_id']).first()
+            event['student_name'] = student.name
+
         response = make_response(event_dicts, 200)
         return response
 

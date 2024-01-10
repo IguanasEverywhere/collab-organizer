@@ -13,6 +13,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeLoggedInUser } from '../reduxSlices/loggedInUserSlice';
 import { changeView } from '../reduxSlices/darkModeSlice';
 
+import lightStyles from './AppLight.module.css';
+
 
 function App() {
 
@@ -54,7 +56,7 @@ function App() {
 
   else {
     return (
-      <>
+      <div className={lightStyles.mainBody}>
         <Redirect to={redirectPath} />
         <NavBar />
         <Switch>
@@ -77,7 +79,7 @@ function App() {
             <PianistInfo />
           </Route>
         </Switch>
-      </>
+      </div>
     );
   }
 }

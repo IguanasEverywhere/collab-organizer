@@ -21,7 +21,6 @@ function AllPianists() {
   return (
     <div className={currentStyle.mainBody}>
       <h1>All pianists</h1>
-      <h4>{viewMode}</h4>
       <ul>
         {allPianists.map((pianist) => <li key={pianist.id}>{pianist.name}</li>)}
       </ul>
