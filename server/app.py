@@ -95,6 +95,12 @@ class Events(Resource):
         response = make_response(event_dicts, 200)
         return response
 
+class EventInfo(Resource):
+    def get(self, id):
+        event = Event.query.filter(Event.id==id).first()
+        response = make_response(event.to_dict(), 200)
+        return response
+
 class Login(Resource):
     def post(self):
 
@@ -134,6 +140,7 @@ api.add_resource(Students, '/api/students', endpoint='/api/students')
 api.add_resource(Events, '/api/events', endpoint='/api/events')
 api.add_resource(StudentInfo, '/api/students/<int:id>', endpoint='/api/students/<int:id>')
 api.add_resource(PianistInfo, '/api/pianists/<int:id>', endpoint='/api/pianists/<int:id>')
+api.add_resource(EventInfo, '/api/events/<int:id>', endpoint='/api/events/<int:id>')
 api.add_resource(CoordinatorInfo, '/api/coordinator/<int:id>', endpoint='/api/coordinator/<int:id>')
 api.add_resource(Login, '/api/login', endpoint='/api/login')
 api.add_resource(Logout, '/api/logout', endpoint='/api/logout')
