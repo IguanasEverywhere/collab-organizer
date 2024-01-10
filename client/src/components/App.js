@@ -8,6 +8,7 @@ import PianistInfo from '../components/PianistInfo/PianistInfo';
 import NavBar from '../components/NavBar/NavBar';
 import Login from '../components/Login/Login';
 import WelcomeLanding from '../components/WelcomeLanding/WelcomeLanding';
+import EventInfo from '../components/EventInfo/EventInfo';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLoggedInUser } from '../reduxSlices/loggedInUserSlice';
@@ -34,6 +35,8 @@ function App() {
 
   let redirectPath = location.pathname === '/' ? '/welcome' : location.pathname
 
+
+  //think about this, do we need it?
   useEffect(() => {
     if (!loggedInUser.payload) {
       dispatch(changeView('light'))
@@ -71,6 +74,9 @@ function App() {
           </Route>
           <Route exact path='/events'>
             <AllEvents />
+          </Route>
+          <Route exact path='/events/:id'>
+            <EventInfo />
           </Route>
           <Route exact path='/students/:id'>
             <StudentInfo />
