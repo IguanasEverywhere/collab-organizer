@@ -1,0 +1,5 @@
+.modalBody {
+  border: 2px solid red;
+  z-index: 10;
+  position: absolute;
+}
