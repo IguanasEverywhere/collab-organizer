@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import lightStyles from './EventInfoLight.module.css';
 import EventModal from '../EventModal/EventModal';
 
+
 function EventInfo() {
 
   const params = useParams();
@@ -18,7 +19,7 @@ function EventInfo() {
 
   console.log(eventInfo)
 
-  const handleEditClick =() => {
+  const handleEditClick = () => {
     setModalVisible((modalVisible) => !modalVisible)
   }
 
