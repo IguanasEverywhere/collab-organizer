@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from 'react-router-dom';
 import lightStyles from './EventInfoLight.module.css';
+import darkStyles from './EventInfoDark.module.css';
 import EventModal from '../EventModal/EventModal';
+
+import {useSelector} from 'react-redux';
 
 
 function EventInfo() {
@@ -10,6 +13,9 @@ function EventInfo() {
 
   const [eventInfo, setEventInfo] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+
+  const viewMode = useSelector(state => state.viewMode.value)
+  const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
   useEffect(() => {
     fetch(`/api/events/${[params.id]}`)
@@ -28,7 +34,7 @@ function EventInfo() {
 
   return (
 
-    <div className={lightStyles.mainBody}>
+    <div className={currentStyle.mainBody}>
       {modalVisible ? <EventModal setModalVisible={setModalVisible} eventInfo={eventInfo}/> : null}
       <div className={lightStyles.eventInfo}>
         <h2>Student: <Link to={`/students/${eventInfo.student_id}`}>{eventInfo.student.name}</Link></h2>
