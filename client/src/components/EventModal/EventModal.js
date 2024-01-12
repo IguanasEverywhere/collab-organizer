@@ -18,7 +18,6 @@ function EventModal({ setModalVisible, eventInfo }) {
       .then(pianists => setAvailablePianists(pianists))
   }, [])
 
-  // console.log(eventInfo)
 
   console.log(availablePianists)
 
