@@ -29,7 +29,7 @@ function EventModal({ setModalVisible, eventInfo }) {
   const schema = yup.object().shape({
     eventType: yup.string(),
     eventLength: yup.number(),
-    eventLocation: yup.string(),
+    eventLocation: yup.string().required(),
     pianistId: yup.number(),
   })
 
@@ -78,6 +78,7 @@ function EventModal({ setModalVisible, eventInfo }) {
             <option value="Jury">Jury</option>
           </select>
           <br />
+          <br />
 
           <label htmlFor="eventLength">Event Length</label>
           <br />
@@ -92,6 +93,7 @@ function EventModal({ setModalVisible, eventInfo }) {
             <option value="90">90</option>
           </select>
           <br />
+          <br />
 
           <label htmlFor="eventLocation">Event Location</label>
           <br />
@@ -100,6 +102,8 @@ function EventModal({ setModalVisible, eventInfo }) {
             name="eventLocation"
             onChange={formik.handleChange}
             value={formik.values.eventLocation}></input>
+          <br />
+          <small>{formik.errors.eventLocation}</small>
           <br />
 
           <label htmlFor="pianist">Pianist</label>
@@ -116,7 +120,7 @@ function EventModal({ setModalVisible, eventInfo }) {
                 {`${pianist.name} | ${pianist.role}`}
               </option>)}
           </select>
-
+          <br />
           <br />
           <button type="submit">Submit changes</button>
 

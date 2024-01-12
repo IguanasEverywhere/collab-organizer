@@ -18,22 +18,31 @@ function NavBar() {
   const handleDarkClick = () => {
     let newView = viewMode === 'light' ? 'dark' : 'light'
     dispatch(changeView(newView))
-  }
-
-  const handleLogout = () => {
+    // maybe here is where you do the fetch PATCH to change it
     fetch(`/api/coordinator/${coordinator.payload.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ 'viewMode': viewMode })
-    }).then(r => r.json()).then(
+      body: JSON.stringify({ 'viewMode': newView })
+    }).then(r => r.json()).then(console.log('changed view'))
+
+  }
+
+  const handleLogout = () => {
+    // fetch(`/api/coordinator/${coordinator.payload.id}`, {
+    //   method: 'PATCH',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({ 'viewMode': viewMode })
+    // }).then(r => r.json()).then(
       fetch('/api/logout', {
         method: 'DELETE',
       }).then(r => {
         history.push('/')
         dispatch(changeLoggedInUser(null))
-      }))
+      })//)
   }
 
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles

@@ -17,6 +17,8 @@ function EventInfo() {
   const viewMode = useSelector(state => state.viewMode.value)
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
+  console.log(viewMode)
+
   useEffect(() => {
     fetch(`/api/events/${[params.id]}`)
       .then(r => r.json())

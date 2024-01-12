@@ -10,3 +10,7 @@
 .modalBody > * {
   padding: 5%;
 }
+
+small {
+  color: red;
+}

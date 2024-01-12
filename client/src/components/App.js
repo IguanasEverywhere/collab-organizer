@@ -36,7 +36,8 @@ function App() {
   let redirectPath = location.pathname === '/' ? '/welcome' : location.pathname
 
 
-  //think about this, do we need it?
+  // //think about this, do we need it? may be better to get from prefs in db as below, but you'll need to save it to db on each click of the change button
+
   useEffect(() => {
     if (!loggedInUser.payload) {
       dispatch(changeView('light'))
