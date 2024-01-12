@@ -121,6 +121,15 @@ class EventInfo(Resource):
 
         db.session.commit()
 
+    def delete(self, id):
+        event_to_delete = Event.query.filter(Event.id==id).first()
+
+        db.session.delete(event_to_delete)
+        db.session.commit()
+
+        response = make_response({"Success": "Event Deleted"}, 200)
+        return response
+
 
 
 
