@@ -1,5 +1,12 @@
 .modalBody {
-  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
   z-index: 10;
   position: absolute;
+  background-color: aqua;
+  width: 50%;
+}
+
+.modalBody > * {
+  padding: 5%;
 }
