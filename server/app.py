@@ -109,7 +109,6 @@ class EventInfo(Resource):
         eventType = form_data['eventType']
         eventLength = form_data['eventLength']
         eventLocation = form_data['eventLocation']
-        studentId = form_data['studentId']
         pianistId = form_data['pianistId']
 
         coordinatorId = session.get('logged_in_coordinator_id')
@@ -117,7 +116,6 @@ class EventInfo(Resource):
         event_to_edit.event_type = eventType
         event_to_edit.event_length = eventLength
         event_to_edit.location = eventLocation
-        event_to_edit.student_id = studentId
         event_to_edit.pianist_id = pianistId
         event_to_edit.coordinator_id = coordinatorId
 

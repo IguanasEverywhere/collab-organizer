@@ -17,13 +17,9 @@ function EventInfo() {
       .then(eventData => setEventInfo(eventData))
   }, [params.id])
 
-  console.log(eventInfo)
-
   const handleEditClick = () => {
     setModalVisible((modalVisible) => !modalVisible)
   }
-
-
 
 
   if (eventInfo === null) {
@@ -33,7 +29,7 @@ function EventInfo() {
   return (
 
     <div className={lightStyles.mainBody}>
-      {modalVisible ? <EventModal setModalVisible={setModalVisible} /> : null}
+      {modalVisible ? <EventModal setModalVisible={setModalVisible} eventInfo={eventInfo}/> : null}
       <div className={lightStyles.eventInfo}>
         <h2>Student: <Link to={`/students/${eventInfo.student_id}`}>{eventInfo.student.name}</Link></h2>
         <h3>{eventInfo.event_type}</h3>

@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import lightStyles from './EventModalLight.module.css';
 import Backdrop from '../Backdrop/Backdrop';
 import { useFormik } from 'formik';
 import * as yup from "yup";
 import { useParams, useHistory } from 'react-router-dom';
 
-function EventModal({ setModalVisible }) {
+function EventModal({ setModalVisible, eventInfo }) {
 
   const params = useParams();
   const history = useHistory();
 
-  console.log(params)
+  const [availablePianists, setAvailablePianists] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/pianists')
+      .then(r => r.json())
+      .then(pianists => setAvailablePianists(pianists))
+  }, [])
+
+  // console.log(eventInfo)
+
+  console.log(availablePianists)
 
   function handleClose() {
     setModalVisible((modalVisible) => !modalVisible)
@@ -20,20 +30,20 @@ function EventModal({ setModalVisible }) {
     eventType: yup.string(),
     eventLength: yup.number(),
     eventLocation: yup.string(),
-    studentId: yup.number(),
     pianistId: yup.number(),
   })
 
   const formik = useFormik({
     initialValues: {
-      eventType: "",
-      eventLength: "",
-      eventLocation: "",
-      studentId: "",
-      pianistId: "",
+      eventType: eventInfo.event_type,
+      eventLength: eventInfo.event_length,
+      eventLocation: eventInfo.location,
+      pianistId: eventInfo.pianist.id,
     },
     validationSchema: schema,
     onSubmit: (values) => {
+      console.log(values)
+      console.log("HELLO???")
       fetch(`/api/events/${params.id}`, {
         method: 'PATCH',
         headers: {
@@ -44,8 +54,9 @@ function EventModal({ setModalVisible }) {
         history.go(0);
       })
     }
-
   })
+
+  console.log(formik.values)
 
 
   // add errors to form
@@ -56,20 +67,30 @@ function EventModal({ setModalVisible }) {
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="eventType">Event Type</label>
           <br />
-          <input
+          <select
             id="eventType"
             name="eventType"
             onChange={formik.handleChange}
-            value={formik.values.eventType}></input>
+            value={formik.values.eventType}>
+            <option value="Junior Recital">Junior Recital</option>
+            <option value="Senior Recital">Senior Recital</option>
+            <option value="Masterclass">Masterclass</option>
+            <option value="Jury">Jury</option>
+          </select>
           <br />
 
           <label htmlFor="eventLength">Event Length</label>
           <br />
-          <input
+          <select
             id="eventLength"
             name="eventLength"
             onChange={formik.handleChange}
-            value={formik.values.eventLength}></input>
+            value={formik.values.eventLength}>
+            <option value="30">30</option>
+            <option value="45">45</option>
+            <option value="60">60</option>
+            <option value="90">90</option>
+          </select>
           <br />
 
           <label htmlFor="eventLocation">Event Location</label>
@@ -81,22 +102,21 @@ function EventModal({ setModalVisible }) {
             value={formik.values.eventLocation}></input>
           <br />
 
-          <label htmlFor="studentId">Student ID</label>
+          <label htmlFor="pianist">Pianist</label>
           <br />
-          <input
-            id="studentId"
-            name="studentId"
-            onChange={formik.handleChange}
-            value={formik.values.studentId}></input>
-          <br />
-
-          <label htmlFor="pianistId">Pianist ID</label>
-          <br />
-          <input
+          <select
             id="pianistId"
             name="pianistId"
             onChange={formik.handleChange}
-            value={formik.values.pianistId}></input>
+            value={formik.values.pianistId}>
+            {availablePianists.map((pianist) =>
+              <option
+                value={pianist.id}
+                key={pianist.id}>
+                {`${pianist.name} | ${pianist.role}`}
+              </option>)}
+          </select>
+
           <br />
           <button type="submit">Submit changes</button>
 
