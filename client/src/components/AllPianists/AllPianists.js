@@ -21,9 +21,13 @@ function AllPianists() {
   return (
     <div className={currentStyle.mainBody}>
       <h1>All pianists</h1>
-      <ul>
-        {allPianists.map((pianist) => <li key={pianist.id}>{pianist.name}</li>)}
-      </ul>
+      <div className={currentStyle.pianistsListingArea}>
+        {allPianists.map((pianist) => <div
+        key={pianist.id}
+        className={currentStyle.pianistListing}
+        >{pianist.name}
+        </div>)}
+      </div>
       <h2>{coordinator.payload.username}</h2>
     </div>
   )

@@ -41,8 +41,6 @@ function EventModal({ setModalVisible, eventInfo }) {
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      console.log(values)
-      console.log("HELLO???")
       fetch(`/api/events/${params.id}`, {
         method: 'PATCH',
         headers: {
@@ -50,6 +48,7 @@ function EventModal({ setModalVisible, eventInfo }) {
         },
         body: JSON.stringify(values)
       }).then(r => r.json()).then(confirmation => {
+        //this causes refresh
         history.go(0);
       })
     }

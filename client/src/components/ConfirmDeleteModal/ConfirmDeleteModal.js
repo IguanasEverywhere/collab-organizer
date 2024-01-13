@@ -17,6 +17,7 @@ function ConfirmDeleteModal({ setDeleteModalVisible }) {
     }).then(r => r.json()).then(confirmation => history.push('/events'))
   }
   return (
+    //put backdrop here
     <div className={lightStyles.modalBody}>
       <h3>Are you sure you want to delete this event?</h3>
       <button onClick={handleYesClick}>Yes</button>
