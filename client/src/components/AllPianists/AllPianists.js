@@ -20,7 +20,7 @@ function AllPianists() {
 
   return (
     <div className={currentStyle.mainBody}>
-      <h1>All pianists</h1>
+      <h1>All pianists for coordinator: {coordinator.payload.username}</h1>
       <div className={currentStyle.pianistsListingArea}>
         {allPianists.map((pianist) => <div
         key={pianist.id}
@@ -28,7 +28,6 @@ function AllPianists() {
         >{pianist.name}
         </div>)}
       </div>
-      <h2>{coordinator.payload.username}</h2>
     </div>
   )
 }
