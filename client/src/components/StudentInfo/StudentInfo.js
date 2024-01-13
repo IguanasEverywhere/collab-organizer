@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './StudentInfo.module.css';
+import { Link } from 'react-router-dom';
 
 function StudentInfo() {
 
@@ -29,12 +30,17 @@ function StudentInfo() {
 
   let eventsInfo =
     studentInfo.events.length > 0 ?
-      studentInfo.events.map((studentEvent) => <li key={studentEvent.id} className={styles.eventListing}>
-        <h4>{studentEvent.event_type}</h4>
-        <p>{studentEvent.event_time} | {studentEvent.location}</p>
-        <p>{studentEvent.event_length} minutes</p>
-        <h5>Pianist: {studentEvent.pianist.name}</h5>
-      </li>) :
+      studentInfo.events.map((studentEvent) => <div
+        key={studentEvent.id}
+        className={styles.eventListing}>
+        <Link
+          to={`/events/${studentEvent.id}`}
+        >
+          <h4>{studentEvent.event_type}</h4>
+          <p>{studentEvent.event_time} | {studentEvent.location}</p>
+          <p>{studentEvent.event_length} minutes</p>
+          <h5>Pianist: {studentEvent.pianist.name}</h5>
+        </Link></div>) :
       <p>No events</p>
 
 
@@ -56,9 +62,9 @@ function StudentInfo() {
       </div>
       <div className={styles.eventsInfo}>
         <h3>Events For {studentInfo.name}</h3>
-        <ul>
-          {eventsInfo}
-        </ul>
+        {/* <ul> */}
+        {eventsInfo}
+        {/* </ul> */}
       </div>
     </div >
   )
