@@ -62,9 +62,7 @@ function StudentInfo() {
       </div>
       <div className={styles.eventsInfo}>
         <h3>Events For {studentInfo.name}</h3>
-        {/* <ul> */}
         {eventsInfo}
-        {/* </ul> */}
       </div>
     </div >
   )
