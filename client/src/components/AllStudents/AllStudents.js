@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useSelector} from 'react-redux';
 import lightStyles from './AllStudentsLight.module.css';
 import darkStyles from './AllStudentsDark.module.css';
+import {Link} from 'react-router-dom';
 
 function AllStudents() {
 
@@ -21,10 +22,10 @@ function AllStudents() {
     <div className={currentStyle.mainBody}>
       <h1>All Students for coordinator: {coordinator.payload.username}</h1>
       <div className={currentStyle.studentsListingArea}>
-        {allStudents.map((student) => <div
+        {allStudents.map((student) => <Link to={`/students/${student.id}`}
         key={student.id}
         className={currentStyle.studentListing}
-        >{student.name}</div>)}
+        >{student.name}</Link>)}
         </div>
     </div>
   )

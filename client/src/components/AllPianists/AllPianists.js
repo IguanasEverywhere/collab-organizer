@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import darkStyles from './AllPianistsDark.module.css';
 import lightStyles from './AllPianistsLight.module.css';
+import {Link} from 'react-router-dom';
 
 function AllPianists() {
 
@@ -22,11 +23,11 @@ function AllPianists() {
     <div className={currentStyle.mainBody}>
       <h1>All pianists for coordinator: {coordinator.payload.username}</h1>
       <div className={currentStyle.pianistsListingArea}>
-        {allPianists.map((pianist) => <div
+        {allPianists.map((pianist) => <Link to={`/pianists/${pianist.id}`}
         key={pianist.id}
         className={currentStyle.pianistListing}
         >{pianist.name}
-        </div>)}
+        </Link>)}
       </div>
     </div>
   )
