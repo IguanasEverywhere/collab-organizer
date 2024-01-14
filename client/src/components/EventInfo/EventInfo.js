@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from 'react-router-dom';
 import lightStyles from './EventInfoLight.module.css';
 import darkStyles from './EventInfoDark.module.css';
-import EventModal from '../EventModal/EventModal';
+import EditEventModal from '../EditEventModal/EditEventModal';
 import ConfirmDeleteModal from '../ConfirmDeleteModal/ConfirmDeleteModal';
 
 import { useSelector } from 'react-redux';
@@ -46,7 +46,7 @@ function EventInfo() {
 
       {deleteModalVisible ? <ConfirmDeleteModal setDeleteModalVisible={setDeleteModalVisible} /> : null}
 
-      {modalVisible ? <EventModal setModalVisible={setModalVisible} eventInfo={eventInfo} /> : null}
+      {modalVisible ? <EditEventModal setModalVisible={setModalVisible} eventInfo={eventInfo} /> : null}
 
       <div className={lightStyles.eventInfo}>
         <h2>Student: <Link to={`/students/${eventInfo.student_id}`}>{eventInfo.student.name}</Link></h2>

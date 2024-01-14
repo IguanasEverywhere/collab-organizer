@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import lightStyles from './EventModalLight.module.css';
+import lightStyles from './EditEventModalLight.module.css';
 import Backdrop from '../Backdrop/Backdrop';
 import { useFormik } from 'formik';
 import * as yup from "yup";
@@ -115,6 +115,7 @@ function EventModal({ setModalVisible, eventInfo }) {
           value={formik.values.eventTime}
           >
           </input>
+          <br />
           <br />
 
           <label htmlFor="pianist">Pianist</label>
