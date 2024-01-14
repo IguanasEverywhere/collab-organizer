@@ -47,15 +47,17 @@ function PianistInfo() {
 
 
   return (
-    <div className={currentStyle.pianistInfoLayout}>
-      <div className={currentStyle.pianistInfo}>
-        <h2>Pianist: {pianistInfo.name}</h2>
-        <p>{pianistInfo.email}</p>
-        <p>{pianistInfo.role}</p>
-      </div>
+    <div className={currentStyle.mainBody}>
+      <div className={currentStyle.pianistInfoLayout}>
+        <div className={currentStyle.pianistInfo}>
+          <h2>Pianist: {pianistInfo.name}</h2>
+          <p>{pianistInfo.email}</p>
+          <p>{pianistInfo.role}</p>
+        </div>
 
-      <div className={currentStyle.pianistEventsInfo}>
-        {pianistEvents}
+        <div className={currentStyle.pianistEventsInfo}>
+          {pianistEvents}
+        </div>
       </div>
     </div>
   )

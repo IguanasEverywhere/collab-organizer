@@ -1,0 +1,44 @@
+.mainBody {
+  background-color: black;
+  height: 100vh;
+}
+
+.pianistInfoLayout {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.pianistInfoLayout > * {
+  width: 40%;
+}
+
+.pianistInfo {
+  color: purple;
+  background-color: #f4ff07db;
+  padding: 2%;
+  border-radius: 10px;
+  line-height: 2;
+}
+
+.pianistEventsInfo {
+  text-align: center;
+  background-color:#f0d3d336;
+  padding: 2%;
+}
+
+.eventListing {
+  background-color: #673ab7ab;
+  padding: 2%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.eventListing > * {
+  text-decoration: none;
+  color: white;
+}
+
+.eventListing > p {
+  font-weight: 200;
+}
