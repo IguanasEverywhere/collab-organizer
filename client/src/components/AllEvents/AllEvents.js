@@ -25,7 +25,13 @@ function AllEvents() {
       <h1>All Events for Coordinator: {loggedInUser.value.payload.username}</h1>
 
       <div className={currentStyle.eventsListing}>
-        {allEvents.map((event) => <Link to={`/events/${event.id}`} key={event.id}className={currentStyle.listing}>{new Date(event.event_time).toLocaleDateString()} | {event.event_type} | {event.student.name} | {event.student.instrument}</Link>)}
+        {allEvents.map((event) =>
+          <Link
+            to={`/events/${event.id}`}
+            key={event.id}
+            className={currentStyle.listing}>
+            {new Date(event.event_time).toLocaleDateString()} | {event.event_type} | {event.student.name} | {event.student.instrument}
+          </Link>)}
       </div>
     </div>
   )

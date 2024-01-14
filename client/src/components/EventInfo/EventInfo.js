@@ -19,8 +19,6 @@ function EventInfo() {
   const viewMode = useSelector(state => state.viewMode.value)
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
-  console.log(viewMode)
-
   useEffect(() => {
     fetch(`/api/events/${[params.id]}`)
       .then(r => r.json())
@@ -40,6 +38,8 @@ function EventInfo() {
     return <p>Loading...</p>
   }
 
+  console.log(eventInfo)
+
   return (
 
     <div className={currentStyle.mainBody}>
@@ -51,6 +51,7 @@ function EventInfo() {
       <div className={lightStyles.eventInfo}>
         <h2>Student: <Link to={`/students/${eventInfo.student_id}`}>{eventInfo.student.name}</Link></h2>
         <h3>{eventInfo.event_type}</h3>
+        <h5>{new Date(eventInfo.event_time).toLocaleString()}</h5>
         <h5>{eventInfo.location}</h5>
         <h5>{eventInfo.event_length} minutes</h5>
         <h5>Pianist: </h5><Link to={`/pianists/${eventInfo.pianist_id}`}>{eventInfo.pianist.name}</Link>

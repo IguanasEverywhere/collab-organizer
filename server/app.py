@@ -10,6 +10,7 @@ from flask_restful import Resource
 from config import app, db, api
 # Add your model imports
 from models import Coordinator, Pianist, Student, Event
+from datetime import datetime
 
 
 # Views go here!
@@ -110,6 +111,7 @@ class EventInfo(Resource):
         eventLength = form_data['eventLength']
         eventLocation = form_data['eventLocation']
         pianistId = form_data['pianistId']
+        eventTime = form_data['eventTime']
 
         coordinatorId = session.get('logged_in_coordinator_id')
 
@@ -118,6 +120,10 @@ class EventInfo(Resource):
         event_to_edit.location = eventLocation
         event_to_edit.pianist_id = pianistId
         event_to_edit.coordinator_id = coordinatorId
+
+        date_time_obj = datetime.strptime(eventTime, '%Y-%m-%dT%H:%M:%S')
+
+        event_to_edit.event_time = date_time_obj
 
         db.session.commit()
 

@@ -38,6 +38,7 @@ function EventModal({ setModalVisible, eventInfo }) {
       eventLength: eventInfo.event_length,
       eventLocation: eventInfo.location,
       pianistId: eventInfo.pianist.id,
+      eventTime: eventInfo.event_time,
     },
     validationSchema: schema,
     onSubmit: (values) => {
@@ -102,6 +103,18 @@ function EventModal({ setModalVisible, eventInfo }) {
             value={formik.values.eventLocation}></input>
           <br />
           <small>{formik.errors.eventLocation}</small>
+          <br />
+
+          <label htmlFor="eventTime">Event Time</label>
+          <br />
+          <input
+          id="eventTime"
+          name="eventTime"
+          type="datetime-local"
+          onChange={formik.handleChange}
+          value={formik.values.eventTime}
+          >
+          </input>
           <br />
 
           <label htmlFor="pianist">Pianist</label>
