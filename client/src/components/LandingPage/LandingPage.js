@@ -12,11 +12,12 @@ function LandingPage() {
       <section className={styles.landingTop}>
         <div className={styles.landingTopLeft}>
           <h2>PianOrganizer ♫</h2>
-          <h1 className={styles.subTitle}>The tool for organizing your Collaborative Pianist Projects</h1>
-          <button>Sign Up</button>
+          <h1 className={styles.subTitle}>The tool for organizing all your Collaborative Pianist Projects</h1>
+          <button className={styles.signUpBtn}>Sign Up</button>
         </div>
         <div className={styles.landingTopRight}>
-          With PianOrganizer, you can:
+          <Login />
+          <p className={styles.featuresHeading}>With <em>PianOrganizer</em>, you can:</p>
           <ul>
             <li>Easily view all recitals, juries, and other events for your organization</li>
             <li>Create new events, delete old events, and edit existing events</li>
