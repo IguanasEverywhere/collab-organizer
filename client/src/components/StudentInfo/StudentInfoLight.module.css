@@ -1,3 +1,8 @@
+.mainBody {
+  background-color: white;
+  height: 100vh;
+}
+
 .studentInfoPageLayout {
   display: flex;
   justify-content: space-around;

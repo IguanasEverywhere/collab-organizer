@@ -56,6 +56,7 @@ function PianistInfo() {
         </div>
 
         <div className={currentStyle.pianistEventsInfo}>
+          <h3>Events scheduled for {pianistInfo.name}</h3>
           {pianistEvents}
         </div>
       </div>

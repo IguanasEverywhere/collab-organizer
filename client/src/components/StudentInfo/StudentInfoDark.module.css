@@ -3,25 +3,25 @@
   height: 100vh;
 }
 
-.pianistInfoLayout {
+.studentInfoPageLayout {
   display: flex;
   justify-content: space-around;
 
 }
 
-.pianistInfoLayout > * {
+.studentInfoPageLayout > * {
   width: 40%;
 }
 
-.pianistInfo {
-  color: purple;
+.studentInfo {
   background-color: #f4ff07db;
+  color: purple;
   padding: 2%;
   border-radius: 10px;
   line-height: 2;
 }
 
-.pianistEventsInfo {
+.eventsInfo {
   text-align: center;
   background-color:#f0d3d336;
   padding: 2%;

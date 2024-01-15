@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import styles from './StudentInfo.module.css';
+import lightStyles from './StudentInfoLight.module.css';
+import darkStyles from './StudentInfoDark.module.css';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 function StudentInfo() {
 
   const studentID = useParams();
+
+  const viewMode = useSelector((state) => state.viewMode.value)
+
+  const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
   const [studentInfo, setStudentInfo] = useState({
     name: null,
@@ -32,7 +39,7 @@ function StudentInfo() {
     studentInfo.events.length > 0 ?
       studentInfo.events.map((studentEvent) => <div
         key={studentEvent.id}
-        className={styles.eventListing}>
+        className={currentStyle.eventListing}>
         <Link
           to={`/events/${studentEvent.id}`}
         >
@@ -44,27 +51,31 @@ function StudentInfo() {
       <p>No events</p>
 
 
+
+
   return (
-    <div className={styles.studentInfoPageLayout}>
-      <div className={styles.studentInfo}>
-        <h1>
-          {studentInfo.name}
-        </h1>
-        <p>
-          Instrument: {studentInfo.instrument}
-        </p>
-        <p>
-          Email: {studentInfo.email}
-        </p>
-        <p>
-          Teacher: {studentInfo.teacher}
-        </p>
+    <div className={currentStyle.mainBody}>
+      <div className={currentStyle.studentInfoPageLayout}>
+        <div className={currentStyle.studentInfo}>
+          <h1>
+            {studentInfo.name}
+          </h1>
+          <p>
+            Instrument: {studentInfo.instrument}
+          </p>
+          <p>
+            Email: {studentInfo.email}
+          </p>
+          <p>
+            Teacher: {studentInfo.teacher}
+          </p>
+        </div>
+        <div className={currentStyle.eventsInfo}>
+          <h3>Events For {studentInfo.name}</h3>
+          {eventsInfo}
+        </div>
       </div>
-      <div className={styles.eventsInfo}>
-        <h3>Events For {studentInfo.name}</h3>
-        {eventsInfo}
-      </div>
-    </div >
+    </div>
   )
 }
 
