@@ -35,7 +35,34 @@ function SignUp() {
 
   return (
     <div>
-      Sign up
+      <form onSubmit={signUpFormik.handleSubmit}>
+        <label htmlFor="username">Username</label>
+        <input
+        id="username"
+        name="username"
+        onChange={signUpFormik.handleChange}
+        value={signUpFormik.values.username}>
+        </input>
+
+        <label htmlFor="password">Password</label>
+        <input
+        id="password"
+        name="password"
+        onChange={signUpFormik.handleChange}
+        value={signUpFormik.values.password}>
+        </input>
+
+        <label htmlFor="organization">Organization</label>
+        <input
+        id="organization"
+        name="organization"
+        onChange={signUpFormik.handleChange}
+        value={signUpFormik.values.organization}>
+        </input>
+
+        <button type="submit">Sign Up</button>
+
+      </form>
     </div>
   )
 }

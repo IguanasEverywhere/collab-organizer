@@ -48,7 +48,6 @@ function App() {
   }, [dispatch, loggedInUser.payload])
 
   if (!loggedInUser.payload) {
-    console.log("this is happening")
     return (
       <>
         <Switch>
