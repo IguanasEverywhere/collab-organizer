@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as yup from "yup";
 import { useFormik } from "formik";
+import SignUpConfirmation from './SignUpConfirmation/SignUpConfirmation';
 
 function SignUp() {
 
   // we may need to check login status first in case a user navigates here manually for some reason while already logged in
+
+  const [signUpSuccess, setSignUpSuccess] = useState(false)
 
   // add more validation to shape for length of input, etc
 
@@ -28,8 +31,11 @@ function SignUp() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(values)
-      }).then (r => r.json())
-      .then(signedUpData => console.log(signedUpData))
+      }).then(r => r.json())
+        .then(signedUpData => {
+          console.log(signedUpData)
+          setSignUpSuccess(true)
+        })
     }
   })
 
@@ -38,31 +44,33 @@ function SignUp() {
       <form onSubmit={signUpFormik.handleSubmit}>
         <label htmlFor="username">Username</label>
         <input
-        id="username"
-        name="username"
-        onChange={signUpFormik.handleChange}
-        value={signUpFormik.values.username}>
+          id="username"
+          name="username"
+          onChange={signUpFormik.handleChange}
+          value={signUpFormik.values.username}>
         </input>
 
         <label htmlFor="password">Password</label>
         <input
-        id="password"
-        name="password"
-        onChange={signUpFormik.handleChange}
-        value={signUpFormik.values.password}>
+          id="password"
+          name="password"
+          onChange={signUpFormik.handleChange}
+          value={signUpFormik.values.password}>
         </input>
 
         <label htmlFor="organization">Organization</label>
         <input
-        id="organization"
-        name="organization"
-        onChange={signUpFormik.handleChange}
-        value={signUpFormik.values.organization}>
+          id="organization"
+          name="organization"
+          onChange={signUpFormik.handleChange}
+          value={signUpFormik.values.organization}>
         </input>
 
         <button type="submit">Sign Up</button>
+        {signUpSuccess ? <SignUpConfirmation setSignUpSuccess={setSignUpSuccess}/> : null}
 
       </form>
+
     </div>
   )
 }
