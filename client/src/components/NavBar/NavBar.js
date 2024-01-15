@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeView } from '../../reduxSlices/darkModeSlice';
 import { changeLoggedInUser } from '../../reduxSlices/loggedInUserSlice';
@@ -37,21 +37,39 @@ function NavBar() {
     //   },
     //   body: JSON.stringify({ 'viewMode': viewMode })
     // }).then(r => r.json()).then(
-      fetch('/api/logout', {
-        method: 'DELETE',
-      }).then(r => {
-        history.push('/')
-        dispatch(changeLoggedInUser(null))
-      })//)
+    fetch('/api/logout', {
+      method: 'DELETE',
+    }).then(r => {
+      history.push('/')
+      dispatch(changeLoggedInUser(null))
+    })//)
   }
 
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
   return (
     <div className={currentStyle.header}>
-      <Link to='/events'>Events</Link>
-      <Link to='/pianists'>Pianists</Link>
-      <Link to='/students'>Students</Link>
+      <NavLink
+        to='/welcome'
+        className={(isActive) => (isActive ? currentStyle.navLink : null)}>Home
+      </NavLink>
+
+      <NavLink
+        to='/events'
+        className={(isActive) => (isActive ? currentStyle.navLink : null)}>Events
+      </NavLink>
+
+      <NavLink
+      to='/pianists'
+      className={(isActive) => (isActive ? currentStyle.navLink : null)}>Pianists
+      </NavLink>
+
+      <NavLink
+      to='/students'
+      className={(isActive) => (isActive ? currentStyle.navLink : null)}>Students
+      </NavLink>
+
+
       <p onClick={handleLogout}>Logout</p>
       <button onClick={handleDarkClick}>Toggle Light Mode / Dark Mode</button>
       <h2>{coordinator.username}</h2>
