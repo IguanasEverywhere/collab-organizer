@@ -1,0 +1,32 @@
+.landingTop {
+  background-color: #35dddd;
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+  box-shadow: 5px 5px 5px gray;
+}
+
+.logoImg {
+  border-radius: 100%;
+  width: 60%;
+  box-shadow: 0px 0px 10px #256d82 ;
+  margin-top: 20px;
+}
+
+.subTitle {
+  font-size: 2rem;
+  font-style: italic;
+  margin-top: 3rem;
+}
+
+.landingBottom {
+  background-color: gray;
+}
+
+.landingTopLeft {
+  width: 30%;
+}
+
+.landingTopRight {
+  width: 40%;
+}

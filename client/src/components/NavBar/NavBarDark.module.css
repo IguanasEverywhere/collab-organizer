@@ -8,3 +8,7 @@
 .navLink {
   background-color: orange;
 }
+
+p {
+  cursor: pointer;
+}
