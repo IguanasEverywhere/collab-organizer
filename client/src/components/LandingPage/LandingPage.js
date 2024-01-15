@@ -1,7 +1,8 @@
 import React from 'react';
 import Login from '../Login/Login';
 import styles from './LandingPage.module.css';
-import logoImg  from '../../assets/pianowithSinger.jpeg'
+import logoImg from '../../assets/pianowithSinger.jpeg';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
 
@@ -13,7 +14,7 @@ function LandingPage() {
         <div className={styles.landingTopLeft}>
           <h2>PianOrganizer ♫</h2>
           <h1 className={styles.subTitle}>The tool for organizing all your Collaborative Pianist Projects</h1>
-          <button className={styles.signUpBtn}>Sign Up</button>
+          <Link to='/signup' className={styles.signUpBtn}>Sign Up</Link>
         </div>
         <div className={styles.landingTopRight}>
           <Login />
@@ -25,9 +26,9 @@ function LandingPage() {
             <li>...and much more!</li>
           </ul>
           <img
-          src={logoImg}
-          alt="logo-img"
-          className={styles.logoImg}></img>
+            src={logoImg}
+            alt="logo-img"
+            className={styles.logoImg}></img>
         </div>
 
 

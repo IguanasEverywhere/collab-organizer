@@ -1,9 +1,10 @@
 .landingTop {
-  background-color: #35dddd;
+  /* background-color: #35dddd; */
+  background-image: linear-gradient(#35dddd, white);
   display: flex;
   justify-content: space-around;
   padding: 2rem;
-  box-shadow: 5px 5px 5px gray;
+  /* box-shadow: 5px 5px 5px gray; */
 }
 
 .logoImg {
@@ -55,6 +56,8 @@
   width: 50%;
   cursor: pointer;
   border-radius: 15px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .signUpBtn:hover {

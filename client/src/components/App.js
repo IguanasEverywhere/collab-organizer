@@ -6,10 +6,10 @@ import AllEvents from '../components/AllEvents/AllEvents';
 import StudentInfo from '../components/StudentInfo/StudentInfo';
 import PianistInfo from '../components/PianistInfo/PianistInfo';
 import NavBar from '../components/NavBar/NavBar';
-// import Login from '../components/Login/Login';
 import WelcomeLanding from '../components/WelcomeLanding/WelcomeLanding';
 import EventInfo from '../components/EventInfo/EventInfo';
 import LandingPage from '../components/LandingPage/LandingPage';
+import SignUp from '../components/SignUp/SignUp';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLoggedInUser } from '../reduxSlices/loggedInUserSlice';
@@ -48,11 +48,15 @@ function App() {
   }, [dispatch, loggedInUser.payload])
 
   if (!loggedInUser.payload) {
+    console.log("this is happening")
     return (
       <>
         <Switch>
-          <Route exact to='/'>
+          <Route exact path='/'>
             <LandingPage />
+          </Route>
+          <Route exact path='/signup'>
+            <SignUp />
           </Route>
         </Switch>
       </>

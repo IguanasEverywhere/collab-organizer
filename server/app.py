@@ -29,6 +29,24 @@ class Coordinators(Resource):
         response = make_response(coordinator_dicts, 200)
         return response
 
+    def post(self):
+        signup_data = request.get_json()
+
+        print(signup_data['username'])
+
+        new_coordinator = Coordinator(
+            username=signup_data['username'],
+            password_hash=signup_data['password'],
+            organization=signup_data['organization'],
+            viewModePreference='light'
+        )
+
+        db.session.add(new_coordinator)
+        db.session.commit()
+
+        response = make_response(new_coordinator.to_dict(), 201)
+        return response
+
 class CoordinatorInfo(Resource):
     def get(self, id):
         coordinator = Coordinator.query.filter(Coordinator.id==id).first()

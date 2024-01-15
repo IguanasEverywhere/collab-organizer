@@ -142,6 +142,8 @@ function EventModal({ setModalVisible, eventInfo }) {
       </div>
     </>
   )
+
+
 }
 
 export default EventModal;
