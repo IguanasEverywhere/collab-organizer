@@ -121,7 +121,10 @@ class EventInfo(Resource):
         event_to_edit.pianist_id = pianistId
         event_to_edit.coordinator_id = coordinatorId
 
-        date_time_obj = datetime.strptime(eventTime, '%Y-%m-%dT%H:%M:%S')
+        try:
+            date_time_obj = datetime.strptime(eventTime, '%Y-%m-%dT%H:%M:%S')
+        except ValueError:
+            date_time_obj = datetime.strptime(eventTime, '%Y-%m-%d %H:%M:%S')
 
         event_to_edit.event_time = date_time_obj
 
