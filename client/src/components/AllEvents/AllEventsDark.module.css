@@ -2,6 +2,7 @@
   background-color: black;
   color: white;
   height: 100%;
+  text-align: center;
 }
 
 .eventsListing {
@@ -26,6 +27,3 @@
   background-color: yellow;
 }
 
-h1 {
-  text-align: center;
-}

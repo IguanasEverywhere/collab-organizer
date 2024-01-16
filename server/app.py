@@ -115,6 +115,41 @@ class Events(Resource):
         response = make_response(event_dicts, 200)
         return response
 
+    def post(self):
+        current_coord = session.get('logged_in_coordinator_id')
+
+        event_data = request.get_json()
+
+        event_type = event_data['event_type']
+        event_time = event_data['event_time']
+        event_length = event_data['event_length']
+        location = event_data['location']
+        student_id = event_data['student_id']
+        pianist_id = event_data['pianist_id']
+        coordinator_id = current_coord
+
+        try:
+            date_time_obj = datetime.strptime(event_time, '%Y-%m-%dT%H:%M:%S')
+        except ValueError:
+            date_time_obj = datetime.strptime(event_time, '%Y-%m-%d %H:%M:%S')
+
+        new_event = Event(
+            event_type=event_type,
+            event_time=date_time_obj,
+            event_length=event_length,
+            location=location,
+            student_id=student_id,
+            pianist_id=pianist_id,
+            coordinator_id=coordinator_id
+        )
+
+        db.session.add(new_event)
+        db.session.commit()
+
+        response = make_response(new_event.to_dict(), 201)
+        return response
+
+
 class EventInfo(Resource):
     def get(self, id):
         event = Event.query.filter(Event.id==id).first()
