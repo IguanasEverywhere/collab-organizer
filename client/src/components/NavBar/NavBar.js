@@ -52,22 +52,22 @@ function NavBar() {
       <h2>🎵🎹PianOrganizer</h2>
       <NavLink
         to='/welcome'
-        className={(isActive) => (isActive ? currentStyle.navLink : null)}>Home
+        className={(isActive) => (isActive ? currentStyle.navLink : currentStyle.unSelectedNavLink)}>Home
       </NavLink>
 
       <NavLink
         to='/events'
-        className={(isActive) => (isActive ? currentStyle.navLink : null)}>Events
+        className={(isActive) => (isActive ? currentStyle.navLink : currentStyle.unSelectedNavLink)}>Events
       </NavLink>
 
       <NavLink
       to='/pianists'
-      className={(isActive) => (isActive ? currentStyle.navLink : null)}>Pianists
+      className={(isActive) => (isActive ? currentStyle.navLink : currentStyle.unSelectedNavLink)}>Pianists
       </NavLink>
 
       <NavLink
       to='/students'
-      className={(isActive) => (isActive ? currentStyle.navLink : null)}>Students
+      className={(isActive) => (isActive ? currentStyle.navLink : currentStyle.unSelectedNavLink)}>Students
       </NavLink>
 
 
