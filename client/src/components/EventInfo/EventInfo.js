@@ -49,15 +49,14 @@ function EventInfo() {
       {modalVisible ? <EditEventModal setModalVisible={setModalVisible} eventInfo={eventInfo} /> : null}
 
       <div className={lightStyles.eventInfo}>
-        <h2>Student: <Link to={`/students/${eventInfo.student_id}`}>{eventInfo.student.name}</Link></h2>
-        <h3>{eventInfo.event_type}</h3>
+        <h2>Student: <Link to={`/students/${eventInfo.student_id}`}>{eventInfo.student.name}</Link>: {eventInfo.event_type}</h2>
         <h5>{new Date(eventInfo.event_time).toLocaleString()}</h5>
         <h5>{eventInfo.location}</h5>
         <h5>{eventInfo.event_length} minutes</h5>
-        <h5>Pianist: </h5><Link to={`/pianists/${eventInfo.pianist_id}`}>{eventInfo.pianist.name}</Link>
+        <h5>Pianist: <Link to={`/pianists/${eventInfo.pianist_id}`}>{eventInfo.pianist.name}</Link></h5>
         <div className={lightStyles.buttonsArea}>
-          <button onClick={handleEditClick}>Edit Event</button>
-          <button onClick={handleDeleteClick}>Delete This Event</button>
+          <button className={lightStyles.eventBtns} onClick={handleEditClick}>Edit Event</button>
+          <button className={lightStyles.eventBtns} onClick={handleDeleteClick}>Delete Event</button>
         </div>
 
       </div>
