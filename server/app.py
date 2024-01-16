@@ -120,8 +120,6 @@ class Events(Resource):
 
         event_data = request.get_json()
 
-        print(event_data)
-
         event_type = event_data['eventType']
         event_time = event_data['eventTime']
         event_length = event_data['eventLength']
@@ -129,6 +127,10 @@ class Events(Resource):
         student_id = event_data['studentId']
         pianist_id = event_data['pianistId']
         coordinator_id = current_coord
+
+        print(type(event_time))
+        print(event_time)
+
 
         date_time_obj = datetime.strptime(event_time, '%Y-%m-%dT%H:%M')
 
@@ -174,9 +176,10 @@ class EventInfo(Resource):
         event_to_edit.coordinator_id = coordinatorId
 
         try:
-            date_time_obj = datetime.strptime(eventTime, '%Y-%m-%dT%H:%M:%S')
-        except ValueError:
-            date_time_obj = datetime.strptime(eventTime, '%Y-%m-%d %H:%M:%S')
+          date_time_obj = datetime.strptime(eventTime, '%Y-%m-%dT%H:%M:%S')
+        except:
+          date_time_obj = datetime.strptime(eventTime, '%Y-%m-%d %H:%M:%S')
+
 
         event_to_edit.event_time = date_time_obj
 

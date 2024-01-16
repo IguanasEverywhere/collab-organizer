@@ -26,6 +26,7 @@ function NewEvent({ setModalVisible }) {
   }
 
   const schema = yup.object().shape({
+    studentId: yup.number(),
     eventType: yup.string(),
     eventLength: yup.number(),
     eventLocation: yup.string().required(),
