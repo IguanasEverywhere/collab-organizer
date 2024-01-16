@@ -32,6 +32,7 @@ function EventModal({ setModalVisible, eventInfo }) {
     eventLength: yup.number(),
     eventLocation: yup.string().required(),
     pianistId: yup.number(),
+    eventTime: yup.date(),
   })
 
   const formik = useFormik({
