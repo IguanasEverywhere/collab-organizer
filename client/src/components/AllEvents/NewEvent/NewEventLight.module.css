@@ -1,3 +1,28 @@
+.newEventArea {
+  display: flex;
+  justify-content: center;
+}
+
 .modalBody {
-  background-color: yellow;
+  background-image: linear-gradient(to bottom right, #35dddd, #35ddde30);
+  margin-top: 5%;
+  padding: 4%;
+  border-radius: 15px;
+}
+
+.modalBody form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalBody button {
+  background-color: orange;
+  border: none;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.modalBody button:hover {
+  background-color: #07aeae;
+  color: white;
 }

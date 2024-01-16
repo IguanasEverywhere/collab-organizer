@@ -24,7 +24,7 @@ function AllEvents() {
     <div className={currentStyle.mainBody}>
       <h1>All Events for Coordinator: {loggedInUser.value.payload.username}</h1>
 
-      <button>Add New Event</button>
+      <Link to='/new-event'><button>Add New Event</button></Link>
 
       <div className={currentStyle.eventsListing}>
         {allEvents.map((event) =>
