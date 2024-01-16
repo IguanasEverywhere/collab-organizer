@@ -25,6 +25,8 @@ function EventModal({ setModalVisible, eventInfo }) {
     setModalVisible((modalVisible) => !modalVisible)
   }
 
+
+  //update this schema!
   const schema = yup.object().shape({
     eventType: yup.string(),
     eventLength: yup.number(),

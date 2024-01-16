@@ -120,18 +120,17 @@ class Events(Resource):
 
         event_data = request.get_json()
 
-        event_type = event_data['event_type']
-        event_time = event_data['event_time']
-        event_length = event_data['event_length']
-        location = event_data['location']
-        student_id = event_data['student_id']
-        pianist_id = event_data['pianist_id']
+        print(event_data)
+
+        event_type = event_data['eventType']
+        event_time = event_data['eventTime']
+        event_length = event_data['eventLength']
+        location = event_data['eventLocation']
+        student_id = event_data['studentId']
+        pianist_id = event_data['pianistId']
         coordinator_id = current_coord
 
-        try:
-            date_time_obj = datetime.strptime(event_time, '%Y-%m-%dT%H:%M:%S')
-        except ValueError:
-            date_time_obj = datetime.strptime(event_time, '%Y-%m-%d %H:%M:%S')
+        date_time_obj = datetime.strptime(event_time, '%Y-%m-%dT%H:%M')
 
         new_event = Event(
             event_type=event_type,

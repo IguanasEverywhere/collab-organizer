@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import lightStyles from './AllEventsLight.module.css';
 import darkStyles from './AllEventsDark.module.css';
 import { Link } from 'react-router-dom';
-import NewEvent from './NewEvent/NewEvent';
 
 function AllEvents() {
 
@@ -11,7 +10,6 @@ function AllEvents() {
   const loggedInUser = useSelector(state => state.loggedInUser)
 
   const [allEvents, setAllEvents] = useState([]);
-  const [showNewEventModal, setShowNewEventModal] = useState(false);
 
   useEffect(() => {
 
@@ -22,16 +20,13 @@ function AllEvents() {
 
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
-  const handleNewEventClick = () => {
-    setShowNewEventModal((currentVis) => !currentVis)
-  }
+
 
   return (
     <div className={currentStyle.mainBody}>
-      {showNewEventModal ? <NewEvent /> : null}
       <h1>All Events for Coordinator: {loggedInUser.value.payload.username}</h1>
 
-      <button onClick={handleNewEventClick}>Add New Event</button>
+      <button>Add New Event</button>
 
       <div className={currentStyle.eventsListing}>
         {allEvents.map((event) =>

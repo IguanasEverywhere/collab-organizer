@@ -10,6 +10,7 @@ import WelcomeLanding from '../components/WelcomeLanding/WelcomeLanding';
 import EventInfo from '../components/EventInfo/EventInfo';
 import LandingPage from '../components/LandingPage/LandingPage';
 import SignUp from '../components/SignUp/SignUp';
+import NewEvent from '../components/AllEvents/NewEvent/NewEvent';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLoggedInUser } from '../reduxSlices/loggedInUserSlice';
@@ -82,6 +83,9 @@ function App() {
           </Route>
           <Route exact path='/events/:id'>
             <EventInfo />
+          </Route>
+          <Route exact path='/new-event'>
+            <NewEvent />
           </Route>
           <Route exact path='/students/:id'>
             <StudentInfo />
