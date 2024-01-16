@@ -49,6 +49,7 @@ function NavBar() {
 
   return (
     <div className={currentStyle.header}>
+      <h2>🎵🎹PianOrganizer</h2>
       <NavLink
         to='/welcome'
         className={(isActive) => (isActive ? currentStyle.navLink : null)}>Home

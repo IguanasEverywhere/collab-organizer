@@ -1,7 +1,7 @@
 .header {
   background-color: blue;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 2.5%;
 }
 
