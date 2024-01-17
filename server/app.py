@@ -99,6 +99,16 @@ class StudentInfo(Resource):
 
         return response
 
+    def delete(self, id):
+        student_to_delete = Student.query.filter(Student.id==id).first()
+
+        db.session.delete(student_to_delete)
+        db.session.commit()
+
+        response = make_response({"Success": "Student Deleted"}, 200)
+        return response
+
+
 
 class Events(Resource):
     def get(self):
