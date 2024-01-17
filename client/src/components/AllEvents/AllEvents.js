@@ -20,10 +20,6 @@ function AllEvents() {
 
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
-  console.log(allEvents)
-
-
-
   return (
     <div className={currentStyle.mainBody}>
       <h1>All Events for Coordinator: {loggedInUser.value.payload.username}</h1>

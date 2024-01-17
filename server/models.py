@@ -63,7 +63,7 @@ class Student(db.Model, SerializerMixin):
 
   coordinator_id = db.Column(db.Integer, db.ForeignKey('Coordinators.id'))
 
-  events = db.relationship('Event', back_populates='student')
+  events = db.relationship('Event', back_populates='student', cascade='all, delete-orphan')
 
 class Event(db.Model, SerializerMixin):
   __tablename__ = "Events"
