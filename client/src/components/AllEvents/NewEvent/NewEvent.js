@@ -41,7 +41,9 @@ function NewEvent() {
 
 
   //come back to this for checking what happens when we delete 1st student
-  console.log(availableStudents[0].id)
+
+
+
   const formik = useFormik({
     initialValues: {
       eventType: "Junior Recital",
@@ -49,8 +51,9 @@ function NewEvent() {
       eventLocation: "",
       pianistId: 1,
       eventTime: `${defaultYear}-${defaultMonth}-${defaultDay}T12:00`,
-      studentId: availableStudents.length > 0 ? availableStudents[0].id : 2,
+      studentId: availableStudents.length > 0 ? availableStudents[0].id : 1,
     },
+    enableReinitialize: true,
     validationSchema: schema,
     onSubmit: (values) => {
       fetch('/api/events', {
@@ -64,6 +67,8 @@ function NewEvent() {
       })
     }
   })
+
+  console.log(formik.values.studentId)
 
 
   // add errors to form
