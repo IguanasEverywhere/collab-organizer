@@ -22,6 +22,7 @@ function AllStudents() {
     <div className={currentStyle.mainBody}>
       <h1>All Students for coordinator: {coordinator.payload.username}</h1>
       <div className={currentStyle.studentsListingArea}>
+        <button className={currentStyle.addNewBtn}>Add New Student</button>
         {allStudents.map((student) => <Link to={`/students/${student.id}`}
         key={student.id}
         className={currentStyle.studentListing}

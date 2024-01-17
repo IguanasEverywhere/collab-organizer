@@ -22,3 +22,18 @@
 .studentListing:hover {
   background-color: yellow;
 }
+
+.addNewBtn {
+  background-color: #6ecbff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 200;
+  margin: 1rem;
+}
+
+.addNewBtn:hover {
+  background-color: #07aeae;
+  color: white;
+}
