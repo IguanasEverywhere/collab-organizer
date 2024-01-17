@@ -91,6 +91,33 @@ class Students(Resource):
         response = make_response(student_dicts, 200)
         return response
 
+    def post(self):
+
+        current_coord = session.get('logged_in_coordinator_id')
+
+        new_student_info = request.get_json()
+
+        name = new_student_info['name']
+        instrument = new_student_info['instrument']
+        teacher = new_student_info['teacher']
+        email = new_student_info['email']
+        coordinator_id = current_coord
+
+        new_student = Student(
+            name=name,
+            instrument=instrument,
+            teacher=teacher,
+            email=email,
+            coordinator_id=coordinator_id
+        )
+
+        db.session.add(new_student)
+        db.session.commit()
+
+        response = make_response(new_student.to_dict(), 201)
+        return response
+
+
 class StudentInfo(Resource):
     def get(self, id):
         student = Student.query.filter(Student.id==id).first()
