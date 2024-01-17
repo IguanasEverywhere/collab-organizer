@@ -20,6 +20,8 @@ function AllEvents() {
 
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
+  console.log(allEvents)
+
 
 
   return (
@@ -32,12 +34,14 @@ function AllEvents() {
 
       <div className={currentStyle.eventsListing}>
         {allEvents.map((event) =>
+
           <Link
             to={`/events/${event.id}`}
             key={event.id}
             className={currentStyle.listing}>
-            {new Date(event.event_time).toLocaleDateString()} | {event.event_type} | {event.student.name} | {event.student.instrument}
-          </Link>)}
+            {new Date(event.event_time).toLocaleDateString()} | {event.event_type} | {event.student ? event.student.name : "unassigned"} | {event.student ? event.student.instrument:  "Unassigned student"}
+          </Link>)
+          }
       </div>
     </div>
   )
