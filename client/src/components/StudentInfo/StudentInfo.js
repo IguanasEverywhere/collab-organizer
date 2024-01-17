@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import lightStyles from './StudentInfoLight.module.css';
 import darkStyles from './StudentInfoDark.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
 function StudentInfo() {
 
   const studentID = useParams();
+  const history = useHistory();
 
   const viewMode = useSelector((state) => state.viewMode.value)
 
@@ -51,6 +52,15 @@ function StudentInfo() {
       <p>No events</p>
 
 
+      const handleDelete = () => {
+        fetch(`/api/students/${studentID.id}`, {
+          method:'DELETE'
+        }).then(r =>r.json()).then(confirmation => {
+          console.log(confirmation)
+          history.push('/students')
+        })
+      }
+
 
 
   return (
@@ -69,6 +79,7 @@ function StudentInfo() {
           <p>
             Teacher: {studentInfo.teacher}
           </p>
+          <button onClick={handleDelete}>{`Delete ${studentInfo.name}`}</button>
         </div>
         <div className={currentStyle.eventsInfo}>
           <h3>Events For {studentInfo.name}</h3>
