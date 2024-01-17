@@ -79,7 +79,7 @@ function StudentInfo() {
           <p>
             Teacher: {studentInfo.teacher}
           </p>
-          <button onClick={handleDelete}>{`Delete ${studentInfo.name}`}</button>
+          <button onClick={handleDelete} className={currentStyle.deleteBtn}>{`Delete ${studentInfo.name} and their events`}</button>
         </div>
         <div className={currentStyle.eventsInfo}>
           <h3>Events For {studentInfo.name}</h3>
