@@ -1,0 +1,16 @@
+.modalContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.modalBody {
+  border: 2px solid black;
+  background-color: white;
+  z-index: 10;
+  position: absolute;
+}
+
+.modalBody > form {
+  display: flex;
+  flex-direction: column;
+}

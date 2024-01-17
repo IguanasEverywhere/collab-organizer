@@ -68,8 +68,6 @@ function NewEvent() {
     }
   })
 
-  console.log(formik.values.studentId)
-
 
   // add errors to form
   return (
