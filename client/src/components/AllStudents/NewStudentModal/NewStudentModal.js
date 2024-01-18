@@ -3,8 +3,11 @@ import Backdrop from '../../Backdrop/Backdrop';
 import lightStyles from './NewStudentModal.module.css';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
+import {useHistory} from 'react-router-dom';
 
-function NewStudentModal() {
+function NewStudentModal({ setModalVisible }) {
+
+  const history = useHistory();
 
   const newStudentSchema = yup.object().shape({
     name: yup.string().required(),
@@ -28,7 +31,10 @@ function NewStudentModal() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(values)
-      }).then(r => r.json()).then(newStudent => console.log(newStudent))
+      }).then(r => r.json()).then(newStudent => {
+        setModalVisible((prevVis) => !prevVis);
+        history.go(0)
+      })
     }
   })
 
@@ -39,33 +45,37 @@ function NewStudentModal() {
         <form onSubmit={studentFormik.handleSubmit}>
           <label htmlFor="name">Student Name</label>
           <input
-          name="name"
-          id="name"
-          onChange={studentFormik.handleChange}
-          value={studentFormik.values.name}></input>
+            name="name"
+            id="name"
+            onChange={studentFormik.handleChange}
+            value={studentFormik.values.name}></input>
+            <small>{studentFormik.errors.name}</small>
 
           <label htmlFor="email">Student Email</label>
           <input
-          name="email"
-          id="email"
-          onChange={studentFormik.handleChange}
-          value={studentFormik.values.email}></input>
+            name="email"
+            id="email"
+            onChange={studentFormik.handleChange}
+            value={studentFormik.values.email}></input>
+            <small>{studentFormik.errors.email}</small>
 
           <label htmlFor="instrument">Instrument</label>
           <input
-          name="instrument"
-          id="instrument"
-          onChange={studentFormik.handleChange}
-          value={studentFormik.values.instrument}></input>
+            name="instrument"
+            id="instrument"
+            onChange={studentFormik.handleChange}
+            value={studentFormik.values.instrument}></input>
+            <small>{studentFormik.errors.instrument}</small>
 
           <label htmlFor="teacher">Teacher Name</label>
           <input
-          name="teacher"
-          id-="teacher"
-          onChange={studentFormik.handleChange}
-          value={studentFormik.values.teacher}></input>
+            name="teacher"
+            id-="teacher"
+            onChange={studentFormik.handleChange}
+            value={studentFormik.values.teacher}></input>
+            <small>{studentFormik.errors.teacher}</small>
 
-          <button type="submit">Submit</button>
+          <button type="submit">Add New Student</button>
 
         </form>
       </div>

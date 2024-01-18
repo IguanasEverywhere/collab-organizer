@@ -28,7 +28,7 @@ function AllStudents() {
 
   return (
     <div className={currentStyle.mainBody}>
-      {modalVisible ? <NewStudentModal /> : null}
+      {modalVisible ? <NewStudentModal setModalVisible={setModalVisible}/> : null}
       <h1>All Students for coordinator: {coordinator.payload.username}</h1>
       <div className={currentStyle.studentsListingArea}>
         <button onClick={handleAddNewClick} className={currentStyle.addNewBtn}>Add New Student</button>
