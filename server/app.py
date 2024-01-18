@@ -71,6 +71,29 @@ class Pianists(Resource):
         response = make_response(pianist_dicts, 200)
         return response
 
+    def post(self):
+        current_coord = session.get('logged_in_coordinator_id')
+
+        new_pianist_info = request.get_json()
+
+        name = new_pianist_info['name']
+        role = new_pianist_info['role']
+        email = new_pianist_info['email']
+        coordinator_id = current_coord
+
+        new_pianist = Pianist(
+            name=name,
+            role=role,
+            email=email,
+            coordinator_id=coordinator_id
+        )
+
+        db.session.add(new_pianist)
+        db.session.commit()
+
+        response = make_response(new_pianist.to_dict(), 201)
+        return response
+
 class PianistInfo(Resource):
     def get(self, id):
         pianist = Pianist.query.filter(Pianist.id==id).first()
