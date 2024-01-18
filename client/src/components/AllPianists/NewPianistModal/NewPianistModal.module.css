@@ -1,0 +1,36 @@
+.modalContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.modalBody {
+  border: 2px solid black;
+  background-color: white;
+  z-index: 10;
+  position: absolute;
+  padding: 10px;
+  border-radius: 15px;
+  background-image: linear-gradient(to bottom right, #35dddd, #35ddde30);
+}
+
+.modalBody > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalBody > form > input {
+  margin: 10px;
+}
+
+.modalBody button {
+  background-color: orange;
+  border: none;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.modalBody button:hover {
+  background-color: white;
+  color: orange;
+}

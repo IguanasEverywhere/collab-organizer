@@ -30,7 +30,7 @@ function AllPianists() {
       {modalVisible ? <NewPianistModal /> : null}
       <h1>All pianists for coordinator: {coordinator.payload.username}</h1>
       <div className={currentStyle.pianistsListingArea}>
-        <button onClick={handleAddNewClick} className={currentStyle.addNewBtn}>Add New Student</button>
+        <button onClick={handleAddNewClick} className={currentStyle.addNewBtn}>Add New Pianist</button>
         {allPianists.map((pianist) => <Link to={`/pianists/${pianist.id}`}
           key={pianist.id}
           className={currentStyle.pianistListing}
