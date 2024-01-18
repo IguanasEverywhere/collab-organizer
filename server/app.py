@@ -102,6 +102,15 @@ class PianistInfo(Resource):
         response = make_response(pianist_dict, 200)
         return response
 
+    def delete(self, id):
+        pianist_to_delete = Pianist.query.filter(Pianist.id==id).first()
+
+        db.session.delete(pianist_to_delete)
+        db.session.commit()
+
+        response = {'Success': 'Pianist deleted'}
+        return response
+
 
 class Students(Resource):
     def get(self):
