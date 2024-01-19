@@ -35,15 +35,22 @@ function EventModal({ setModalVisible, eventInfo }) {
     eventTime: yup.date(),
   })
 
+  console.log(eventInfo)
+
+
+  // wait for availablePianists to populate, assign null until then. Then formik pianistId gets assigned to either the eventInfo's pianist if there is one, or null, or first availablePianist
+  let pianistID = availablePianists.length > 0 ? availablePianists[0].id : null
+
   const formik = useFormik({
     initialValues: {
       eventType: eventInfo.event_type,
       eventLength: eventInfo.event_length,
       eventLocation: eventInfo.location,
-      pianistId: eventInfo.pianist.id,
+      pianistId: eventInfo.pianist ? eventInfo.pianist.id : pianistID,
       eventTime: eventInfo.event_time,
     },
     validationSchema: schema,
+    enableReinitialize: true,
     onSubmit: (values) => {
       fetch(`/api/events/${params.id}`, {
         method: 'PATCH',
@@ -111,11 +118,11 @@ function EventModal({ setModalVisible, eventInfo }) {
           <label htmlFor="eventTime">Event Time</label>
           <br />
           <input
-          id="eventTime"
-          name="eventTime"
-          type="datetime-local"
-          onChange={formik.handleChange}
-          value={formik.values.eventTime}
+            id="eventTime"
+            name="eventTime"
+            type="datetime-local"
+            onChange={formik.handleChange}
+            value={formik.values.eventTime}
           >
           </input>
           <br />
