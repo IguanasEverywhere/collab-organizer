@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import lightStyles from './AllEventsLight.module.css';
 import darkStyles from './AllEventsDark.module.css';
 import { Link } from 'react-router-dom';
+import EventListing from './EventListing/EventListing';
 
 function AllEvents() {
 
@@ -30,13 +31,14 @@ function AllEvents() {
 
       <div className={currentStyle.eventsListing}>
         {allEvents.map((event) =>
+        <EventListing key={event.id} event={event}/>)
 
-          <Link
-            to={`/events/${event.id}`}
-            key={event.id}
-            className={currentStyle.listing}>
-            {new Date(event.event_time).toLocaleDateString()} | {event.event_type} | {event.student ? event.student.name : "unassigned"} | {event.student ? event.student.instrument:  "Unassigned student"}
-          </Link>)
+          // <Link
+          //   to={`/events/${event.id}`}
+          //   key={event.id}
+          //   className={currentStyle.listing}>
+          //   {new Date(event.event_time).toLocaleDateString()} | {event.event_type} | {event.student ? event.student.name : "unassigned"} | {event.student ? event.student.instrument:  "Unassigned student"}
+          // </Link>)
           }
       </div>
     </div>

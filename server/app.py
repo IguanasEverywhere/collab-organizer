@@ -298,6 +298,15 @@ class CheckSession(Resource):
         else:
             return None
 
+class UnassignedEvents(Resource):
+    def get(self):
+        events_with_null_pianist = Event.query.filter(Event.pianist_id==None).all()
+
+        serialized_events = [event.to_dict() for event in events_with_null_pianist]
+
+        response = make_response(serialized_events, 200)
+        return response
+
 
 api.add_resource(Coordinators, '/api/coordinator', endpoint='/api/coordinator')
 api.add_resource(Pianists, '/api/pianists', endpoint='/api/pianists')
@@ -310,6 +319,7 @@ api.add_resource(CoordinatorInfo, '/api/coordinator/<int:id>', endpoint='/api/co
 api.add_resource(Login, '/api/login', endpoint='/api/login')
 api.add_resource(Logout, '/api/logout', endpoint='/api/logout')
 api.add_resource(CheckSession, '/api/check-session', endpoint='/api/check-session')
+api.add_resource(UnassignedEvents, '/api/unassigned-events', endpoint='/api/unassigned-events')
 
 
 if __name__ == '__main__':
