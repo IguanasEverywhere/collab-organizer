@@ -60,7 +60,7 @@ function PianistInfo() {
           <h2>Pianist: {pianistInfo.name}</h2>
           <p>{pianistInfo.email}</p>
           <p>{pianistInfo.role}</p>
-          <button onClick={handleDeleteClick}>Delete pianist: {pianistInfo.name}</button>
+          <button className={currentStyle.deleteBtn}onClick={handleDeleteClick}>Delete pianist: {pianistInfo.name}</button>
         </div>
 
         <div className={currentStyle.pianistEventsInfo}>

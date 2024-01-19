@@ -8,7 +8,7 @@
   justify-content: space-around;
 }
 
-.pianistInfoLayout > * {
+.pianistInfoLayout>* {
   width: 40%;
 }
 
@@ -32,10 +32,17 @@
   margin-top: 10px;
 }
 
-.eventListing > * {
+.eventListing>* {
   text-decoration: none;
 }
 
-.eventListing > p {
+.eventListing>p {
   font-weight: 200;
+}
+
+.deleteBtn {
+  background-color: #ff0000ab;
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
 }

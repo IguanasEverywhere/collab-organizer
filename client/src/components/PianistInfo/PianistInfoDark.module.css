@@ -43,3 +43,10 @@
 .eventListing > p {
   font-weight: 200;
 }
+
+.deleteBtn {
+  background-color: #e39505;
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+}
