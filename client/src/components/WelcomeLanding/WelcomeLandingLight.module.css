@@ -1,4 +1,30 @@
 .mainBody {
   background-color: white;
   color: black;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.mainBodyLeft {
+  border: 2px solid blue;
+  width: 30%;
+  text-align: center;
+}
+
+.mainBodyLeft * {
+  margin: 7%;
+}
+
+.mainBodyLeft h3 {
+  font-weight: 200;
+  font-style: italic;
+}
+
+.mainBodyRight {
+  border: 2px solid red;
+}
+
+.mainBodyRight > * {
+  width: 100%;
 }
