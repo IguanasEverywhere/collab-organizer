@@ -25,9 +25,13 @@ function WelcomeLanding() {
         <h3>Let's organize your pianist assignments for {loggedInUser.payload.organization}</h3>
       </div>
       <div className={currentStyle.mainBodyRight}>
-        {unassignedEvents.map((event) =>
-          <EventListing key={event.id} event={event} />)
-        }
+        <h2>To-DO:</h2>
+        {unassignedEvents.length > 0 ? <h3>The following events do not have a pianist assigned yet:</h3> : <h3>🎉 You're all caught up! All your events have a pianist assignment!</h3>}
+        <div className={currentStyle.listingArea}>
+          {unassignedEvents.map((event) =>
+            <EventListing key={event.id} event={event} />)
+          }
+        </div>
       </div>
     </div>
   )

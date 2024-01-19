@@ -40,8 +40,7 @@ function NewEvent() {
   const defaultDay = starterDate.getDate()
 
 
-  //come back to this for checking what happens when we delete 1st student
-
+  let pianistID = availablePianists.length > 0 ? availablePianists[0].id : null
 
 
   const formik = useFormik({
@@ -49,7 +48,7 @@ function NewEvent() {
       eventType: "Junior Recital",
       eventLength: 30,
       eventLocation: "",
-      pianistId: 1,
+      pianistId: pianistID,
       eventTime: `${defaultYear}-${defaultMonth}-${defaultDay}T12:00`,
       studentId: availableStudents.length > 0 ? availableStudents[0].id : 1,
     },

@@ -3,4 +3,48 @@
   color: white;
   display: flex;
   height: 100vh;
+
+}
+
+.mainBodyLeft {
+  width: 50%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.mainBodyLeft * {
+  margin: 7%;
+}
+
+.mainBodyLeft h3 {
+  font-weight: 200;
+  font-style: italic;
+}
+
+.mainBodyRight {
+  margin-top: 25px;
+  margin-right: 20px;
+  background-color: #80808036;
+  border-radius:15px;
+  text-align: center;
+  width: 50%;
+  padding: 2%;
+  height: fit-content;
+}
+
+.mainBodyRight > * {
+  width: 100%;
+  margin: 3%;
+}
+
+.mainBodyRight h3 {
+  font-weight: 200;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.listingArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
