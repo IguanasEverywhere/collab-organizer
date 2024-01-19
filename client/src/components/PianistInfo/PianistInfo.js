@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import lightStyles from './PianistInfoLight.module.css';
 import darkStyles from './PianistInfoDark.module.css';
@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 function PianistInfo() {
 
   let pianistID = useParams();
+  let history = useHistory();
 
   const viewMode = useSelector(state => state.viewMode.value)
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles
@@ -33,7 +34,7 @@ function PianistInfo() {
 
   }, [pianistID.id])
 
-  // update this to include more info
+
   let pianistEvents = pianistInfo.events.length > 0 ? pianistInfo.events.map((event) =>
     <div
       className={currentStyle.eventListing}
@@ -45,6 +46,12 @@ function PianistInfo() {
     </div>)
     : <p>No Events</p>
 
+    const handleDeleteClick = () => {
+      fetch(`/api/pianists/${pianistID.id}`, {
+        method: 'DELETE',
+      }).then(r => r.json()).then(confirmation => history.push('/pianists'))
+    }
+
 
   return (
     <div className={currentStyle.mainBody}>
@@ -53,6 +60,7 @@ function PianistInfo() {
           <h2>Pianist: {pianistInfo.name}</h2>
           <p>{pianistInfo.email}</p>
           <p>{pianistInfo.role}</p>
+          <button onClick={handleDeleteClick}>Delete pianist: {pianistInfo.name}</button>
         </div>
 
         <div className={currentStyle.pianistEventsInfo}>
