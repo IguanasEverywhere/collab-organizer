@@ -47,7 +47,7 @@ function StudentInfo() {
           <h4>{studentEvent.event_type}</h4>
           <p>{studentEvent.event_time} | {studentEvent.location}</p>
           <p>{studentEvent.event_length} minutes</p>
-          <h5>Pianist: {studentEvent.pianist.name}</h5>
+          {studentEvent.pianist_id ? <h5>Pianist: {studentEvent.pianist.name}</h5> : <h5>Unassigned pianist</h5>}
         </Link></div>) :
       <p>No events</p>
 

@@ -40,7 +40,6 @@ function EventInfo() {
 
   console.log(eventInfo)
 
-  // need to handle removed / therefore unassigned pianist or student assignments here
 
   return (
 
