@@ -27,7 +27,7 @@ function AllPianists() {
 
   return (
     <div className={currentStyle.mainBody}>
-      {modalVisible ? <NewPianistModal /> : null}
+      {modalVisible ? <NewPianistModal setModalVisible={setModalVisible} /> : null}
       <h1>All pianists for coordinator: {coordinator.payload.username}</h1>
       <div className={currentStyle.pianistsListingArea}>
         <button onClick={handleAddNewClick} className={currentStyle.addNewBtn}>Add New Pianist</button>

@@ -3,9 +3,9 @@ import styles from './NewPianistModal.module.css';
 import Backdrop from '../../Backdrop/Backdrop';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-function NewPianistModal() {
+function NewPianistModal({ setModalVisible }) {
 
   const history = useHistory();
 
@@ -33,10 +33,19 @@ function NewPianistModal() {
     }
   })
 
+  const handleCloseClick = () => {
+    setModalVisible((prevVis) => !prevVis)
+  }
+
   return (
     <div className={styles.modalContainer}>
       <Backdrop />
       <div className={styles.modalBody}>
+        <div className={styles.closeBtnArea}>
+          <button onClick={handleCloseClick} className={styles.closeBtn}>
+            &nbsp;X&nbsp;
+          </button>
+        </div>
         <form onSubmit={pianistFormik.handleSubmit}>
 
           <label htmlFor="name">Pianist Name</label>
@@ -52,10 +61,10 @@ function NewPianistModal() {
             name="role"
             value={pianistFormik.role}
             onChange={pianistFormik.handleChange}>
-              <option>staff</option>
-              <option>student</option>
-              <option>TA</option>
-            </select>
+            <option>staff</option>
+            <option>student</option>
+            <option>TA</option>
+          </select>
 
           <label htmlFor="email">Pianist Email</label>
           <input
@@ -65,9 +74,10 @@ function NewPianistModal() {
             onChange={pianistFormik.handleChange}></input>
 
 
-          <button type="submit">Add New Pianist</button>
+          <button className={styles.submitBtn} type="submit">Add New Pianist</button>
 
         </form>
+
       </div>
     </div>
   )

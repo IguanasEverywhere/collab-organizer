@@ -18,11 +18,32 @@
   flex-direction: column;
 }
 
-.modalBody > form > input {
-  margin: 10px;
+.modalBody > form > input, .modalBody > form > select {
+  margin-bottom: 10px;
 }
 
-.modalBody button {
+.closeBtnArea {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeBtn {
+  background-color: transparent;
+  border-radius: 100%;
+  padding:3px;
+  font-size: 0.65rem;
+  font-weight: 100;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  background-color: orange;
+  border: 1px solid orange;
+  color: white;
+}
+
+.submitBtn {
   background-color: orange;
   border: none;
   color: white;
@@ -30,7 +51,8 @@
   cursor: pointer;
 }
 
-.modalBody button:hover {
+.submitBtn:hover {
   background-color: white;
   color: orange;
 }
+
