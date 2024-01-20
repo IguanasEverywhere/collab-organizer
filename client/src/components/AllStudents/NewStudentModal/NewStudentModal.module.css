@@ -22,7 +22,7 @@
   margin: 10px;
 }
 
-.modalBody button {
+/* .modalBody button {
   background-color: orange;
   border: none;
   color: white;
@@ -31,6 +31,40 @@
 }
 
 .modalBody button:hover {
+  background-color: white;
+  color: orange;
+} */
+
+.closeBtnArea {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeBtn {
+  background-color: transparent;
+  border-radius: 100%;
+  padding:3px;
+  font-size: 0.65rem;
+  font-weight: 100;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  background-color: orange;
+  border: 1px solid orange;
+  color: white;
+}
+
+.submitBtn {
+  background-color: orange;
+  border: none;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.submitBtn:hover {
   background-color: white;
   color: orange;
 }

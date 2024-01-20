@@ -38,10 +38,19 @@ function NewStudentModal({ setModalVisible }) {
     }
   })
 
+  const handleCloseClick = () => {
+    setModalVisible((prevVis) => !prevVis)
+  }
+
   return (
     <div className={lightStyles.modalContainer}>
       <Backdrop />
       <div className={lightStyles.modalBody}>
+      <div className={lightStyles.closeBtnArea}>
+          <button onClick={handleCloseClick} className={lightStyles.closeBtn}>
+            &nbsp;X&nbsp;
+          </button>
+        </div>
         <form onSubmit={studentFormik.handleSubmit}>
           <label htmlFor="name">Student Name</label>
           <input
@@ -75,7 +84,7 @@ function NewStudentModal({ setModalVisible }) {
             value={studentFormik.values.teacher}></input>
             <small>{studentFormik.errors.teacher}</small>
 
-          <button type="submit">Add New Student</button>
+          <button className={lightStyles.submitBtn} type="submit">Add New Student</button>
 
         </form>
       </div>
