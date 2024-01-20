@@ -39,8 +39,8 @@ function NewEvent() {
   const defaultMonth = defaultMonthNum < 10 ? '0' + defaultMonthNum : defaultMonthNum
   const defaultDay = starterDate.getDate()
 
-
-  let pianistID = availablePianists.length > 0 ? availablePianists[0].id : null
+  // Setting to 1 seems dangerous, but works for now
+  let pianistID = availablePianists.length > 0 ? availablePianists[0].id : 1
 
 
   const formik = useFormik({

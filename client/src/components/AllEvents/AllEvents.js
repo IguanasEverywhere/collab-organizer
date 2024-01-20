@@ -11,6 +11,9 @@ function AllEvents() {
   const loggedInUser = useSelector(state => state.loggedInUser)
 
   const [allEvents, setAllEvents] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState(12)
+
+  console.log(selectedMonth)
 
   useEffect(() => {
 
@@ -21,25 +24,46 @@ function AllEvents() {
 
   const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
+  const handleMonthSelect = (e) => {
+    setSelectedMonth(e.target.value)
+  }
+
   return (
     <div className={currentStyle.mainBody}>
       <h1>All Events for Coordinator: {loggedInUser.value.payload.username}</h1>
 
       <Link to='/new-event'><button className={currentStyle.addNewBtn}>Add New Event</button></Link>
 
+      <select onChange={handleMonthSelect}>
+        <option value="12">All Events</option>
+        <option value="0">January</option>
+        <option value="1">February</option>
+        <option value="2">March</option>
+        <option value="3">April</option>
+        <option value="4">May</option>
+        <option value="5">June</option>
+        <option value="6">July</option>
+        <option value="7">August</option>
+        <option value="8">September</option>
+        <option value="9">October</option>
+        <option value="10">November</option>
+        <option value="11">December</option>
+      </select>
 
 
       <div className={currentStyle.eventsListing}>
-        {allEvents.map((event) =>
-        <EventListing key={event.id} event={event}/>)
 
-          // <Link
-          //   to={`/events/${event.id}`}
-          //   key={event.id}
-          //   className={currentStyle.listing}>
-          //   {new Date(event.event_time).toLocaleDateString()} | {event.event_type} | {event.student ? event.student.name : "unassigned"} | {event.student ? event.student.instrument:  "Unassigned student"}
-          // </Link>)
+        {allEvents.map((event) => {
+          if (parseInt(selectedMonth) === 12) {
+            return <EventListing key={event.id} event={event} />
           }
+
+          else if (new Date(event.event_time).getMonth() === parseInt(selectedMonth)) {
+            return <EventListing key={event.id} event={event} />
+          }
+          return null;
+        })
+        }
       </div>
     </div>
   )
