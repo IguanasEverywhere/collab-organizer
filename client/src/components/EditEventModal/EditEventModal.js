@@ -39,14 +39,14 @@ function EventModal({ setModalVisible, eventInfo }) {
 
 
   // wait for availablePianists to populate, assign null until then. Then formik pianistId gets assigned to either the eventInfo's pianist if there is one, or 1, or first availablePianist
-  let pianistID = availablePianists.length > 0 ? availablePianists[0].id : 1
+  // let pianistID = availablePianists.length > 0 ? availablePianists[0].id : ""
 
   const formik = useFormik({
     initialValues: {
       eventType: eventInfo.event_type,
       eventLength: eventInfo.event_length,
       eventLocation: eventInfo.location,
-      pianistId: eventInfo.pianist ? eventInfo.pianist.id : pianistID,
+      pianistId: eventInfo.pianist ? eventInfo.pianist.id : "",
       eventTime: eventInfo.event_time,
     },
     validationSchema: schema,
@@ -66,7 +66,6 @@ function EventModal({ setModalVisible, eventInfo }) {
   })
 
 
-  // add errors to form
   return (
     <div className={currentStyle.modalContainer}>
       <Backdrop />
@@ -136,6 +135,7 @@ function EventModal({ setModalVisible, eventInfo }) {
             name="pianistId"
             onChange={formik.handleChange}
             value={formik.values.pianistId}>
+              <option value="">UNASSIGNED PIANIST</option>
             {availablePianists.map((pianist) =>
               <option
                 value={pianist.id}
