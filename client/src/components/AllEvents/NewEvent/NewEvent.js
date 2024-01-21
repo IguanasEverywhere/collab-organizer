@@ -48,7 +48,7 @@ function NewEvent() {
       eventType: "Junior Recital",
       eventLength: 30,
       eventLocation: "",
-      pianistId: pianistID,
+      pianistId: "",
       eventTime: `${defaultYear}-${defaultMonth}-${defaultDay}T12:00`,
       studentId: availableStudents.length > 0 ? availableStudents[0].id : 1,
     },
@@ -144,6 +144,7 @@ function NewEvent() {
                 name="pianistId"
                 onChange={formik.handleChange}
                 value={formik.values.pianistId}>
+                  <option value={null}>No pianist</option>
                 {availablePianists.map((pianist) =>
                   <option
                     value={pianist.id}
