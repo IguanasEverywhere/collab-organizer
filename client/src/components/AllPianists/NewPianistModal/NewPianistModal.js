@@ -54,6 +54,7 @@ function NewPianistModal({ setModalVisible }) {
             name="name"
             value={pianistFormik.name}
             onChange={pianistFormik.handleChange}></input>
+            <small>{pianistFormik.errors.name}</small>
 
           <label htmlFor="role">Pianist Role</label>
           <select
@@ -72,6 +73,7 @@ function NewPianistModal({ setModalVisible }) {
             name="email"
             value={pianistFormik.email}
             onChange={pianistFormik.handleChange}></input>
+            <small>{pianistFormik.errors.email}</small>
 
 
           <button className={styles.submitBtn} type="submit">Add New Pianist</button>

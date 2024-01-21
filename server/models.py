@@ -1,6 +1,7 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import validates
 
 from config import db, bcrypt
 
@@ -10,10 +11,10 @@ class Coordinator(db.Model, SerializerMixin):
   __tablename__ = "Coordinators"
 
   id = db.Column(db.Integer, primary_key=True)
-  username = db.Column(db.String)
-  organization = db.Column(db.String)
-  viewModePreference = db.Column(db.String)
-  _password_hash = db.Column(db.String)
+  username = db.Column(db.String, nullable=False)
+  organization = db.Column(db.String, nullable=False)
+  viewModePreference = db.Column(db.String, nullable=False)
+  _password_hash = db.Column(db.String, nullable=False)
 
   @hybrid_property
   def password_hash(self):
@@ -33,9 +34,15 @@ class Pianist(db.Model, SerializerMixin):
   serialize_rules = ('-events.pianist',)
 
   id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String)
-  role = db.Column(db.String)
-  email = db.Column(db.String)
+  name = db.Column(db.String, nullable=False)
+  role = db.Column(db.String, nullable=False)
+  email = db.Column(db.String, nullable=False)
+
+  @validates('email')
+  def validate_email(self, key, email_address):
+    if '@' not in email_address or '.' not in email_address:
+      raise ValueError("Invalid Email Address")
+    return email_address
 
   coordinator_id = db.Column(db.Integer, db.ForeignKey('Coordinators.id'))
 
@@ -48,10 +55,16 @@ class Student(db.Model, SerializerMixin):
 
   id = db.Column(db.Integer, primary_key=True)
 
-  name = db.Column(db.String)
-  instrument = db.Column(db.String)
-  teacher = db.Column(db.String)
-  email = db.Column(db.String)
+  name = db.Column(db.String, nullable=False)
+  instrument = db.Column(db.String, nullable=False)
+  teacher = db.Column(db.String, nullable=False)
+  email = db.Column(db.String, nullable=False)
+
+  @validates('email')
+  def validate_email(self, key, email_address):
+    if '@' not in email_address or '.' not in email_address:
+      raise ValueError("Invalid Email Address")
+    return email_address
 
   coordinator_id = db.Column(db.Integer, db.ForeignKey('Coordinators.id'))
 
@@ -64,10 +77,10 @@ class Event(db.Model, SerializerMixin):
 
   id = db.Column(db.Integer, primary_key=True)
 
-  event_type = db.Column(db.String)
-  event_time = db.Column(db.DateTime)
-  event_length = db.Column(db.Integer)
-  location = db.Column(db.String)
+  event_type = db.Column(db.String, nullable=False)
+  event_time = db.Column(db.DateTime, nullable=False)
+  event_length = db.Column(db.Integer, nullable=False)
+  location = db.Column(db.String, nullable=False)
 
   student_id = db.Column(db.Integer, db.ForeignKey('Students.id'))
   pianist_id = db.Column(db.Integer, db.ForeignKey('Pianists.id'))

@@ -13,7 +13,6 @@ function AllEvents() {
   const [allEvents, setAllEvents] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(12)
 
-  console.log(selectedMonth)
 
   useEffect(() => {
 
