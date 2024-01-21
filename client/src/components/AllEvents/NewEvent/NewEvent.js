@@ -40,7 +40,7 @@ function NewEvent() {
   const defaultDay = starterDate.getDate()
 
   // Setting to 1 seems dangerous, but works for now
-  let pianistID = availablePianists.length > 0 ? availablePianists[0].id : 1
+  // let pianistID = availablePianists.length > 0 ? availablePianists[0].id : 1
 
 
   const formik = useFormik({
@@ -144,7 +144,7 @@ function NewEvent() {
                 name="pianistId"
                 onChange={formik.handleChange}
                 value={formik.values.pianistId}>
-                  <option value={null}>No pianist</option>
+                  <option value={""}>UNASSIGNED PIANIST</option>
                 {availablePianists.map((pianist) =>
                   <option
                     value={pianist.id}
