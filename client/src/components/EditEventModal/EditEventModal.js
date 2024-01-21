@@ -68,9 +68,12 @@ function EventModal({ setModalVisible, eventInfo }) {
 
   // add errors to form
   return (
-    <>
+    <div className={currentStyle.modalContainer}>
       <Backdrop />
       <div className={currentStyle.modalBody}>
+        <div className={currentStyle.closeBtnArea}>
+          <button className={currentStyle.closeBtn} onClick={handleClose}>&nbsp;X&nbsp;</button>
+        </div>
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="eventType">Event Type</label>
           <br />
@@ -142,13 +145,11 @@ function EventModal({ setModalVisible, eventInfo }) {
           </select>
           <br />
           <br />
-          <button type="submit">Submit changes</button>
+          <button className={currentStyle.submitBtn} type="submit">Submit changes</button>
 
         </form>
-
-        <button onClick={handleClose}>Close</button>
       </div>
-    </>
+    </div>
   )
 
 

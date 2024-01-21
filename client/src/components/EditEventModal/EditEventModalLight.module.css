@@ -1,15 +1,59 @@
+.modalContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .modalBody {
   display: flex;
   flex-direction: column;
   z-index: 10;
   position: absolute;
-  background-color: aqua;
-  width: 50%;
+  background-color: white;
+  background-image: linear-gradient(to bottom right, #35dddd, #35ddde30);
+  width: 33%;
+  border-radius: 15px;
+  border: 1px solid black;
 }
 
 .modalBody > * {
-  padding: 5%;
+  padding: 0 0 5% 10%;
 }
+
+.closeBtnArea {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeBtn {
+  background-color: transparent;
+  border-radius: 100%;
+  padding: 3px;
+  margin: 3px;
+  font-size: 0.65rem;
+  font-weight: 100;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  background-color: orange;
+  border: 1px solid orange;
+  color: white;
+}
+
+.submitBtn {
+  background-color: orange;
+  border: none;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.submitBtn:hover {
+  background-color: white;
+  color: orange;
+}
+
 
 small {
   color: red;
