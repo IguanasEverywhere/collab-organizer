@@ -52,6 +52,7 @@ function AllEvents() {
       </div>
 
       <div className={currentStyle.eventsListing}>
+        {allEvents.length === 0 ? <h3><br />You have no events scheduled!</h3> : null}
 
         {allEvents.map((event) => {
           if (parseInt(selectedMonth) === 12) {

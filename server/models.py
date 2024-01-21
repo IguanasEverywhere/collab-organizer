@@ -9,9 +9,6 @@ from config import db, bcrypt
 class Coordinator(db.Model, SerializerMixin):
   __tablename__ = "Coordinators"
 
-  # getting rid of relationships for now...relating to students also had relation to events and coordinator, but events also had relationship to coordinator. Adding -coordinator to each table was insufficient, maybe because relationships are traversed even if not serialized?
-
-
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String)
   organization = db.Column(db.String)
@@ -29,11 +26,6 @@ class Coordinator(db.Model, SerializerMixin):
 
   def authenticate(self, password):
     return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
-
-
-  # students = db.relationship('Student', back_populates='coordinator')
-  # pianists = db.relationship('Pianist', back_populates='coordinator')
-  # events = db.relationship('Event', back_populates='coordinator')
 
 class Pianist(db.Model, SerializerMixin):
   __tablename__ = "Pianists"

@@ -20,4 +20,5 @@ p {
   padding: 5px;
   font-size: 1rem;
   font-weight: 100;
+  cursor: pointer;
 }
