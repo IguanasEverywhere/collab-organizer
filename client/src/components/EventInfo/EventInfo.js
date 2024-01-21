@@ -33,13 +33,9 @@ function EventInfo() {
     setDeleteModalVisible((deleteModalVisible) => !deleteModalVisible)
   }
 
-
   if (eventInfo === null) {
     return <p>Loading...</p>
   }
-
-  console.log(eventInfo)
-
 
   return (
 

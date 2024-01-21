@@ -3,6 +3,8 @@
   color: black;
   height: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .eventsListing {
@@ -11,21 +13,11 @@
   align-items: center;
 }
 
-/* .listing {
-  background-color: orange;
-  width: 50%;
-  margin: 5px;
-  padding: 0.5rem;
-  border-radius: 15px;
-  font-weight: 600;
+.subHeaderArea {
   display: flex;
-  text-decoration: none;
-  color: #328889;
+  align-self: center;
+  flex-direction: column;
 }
-
-.listing:hover {
-  background-color: yellow;
-} */
 
 .addNewBtn {
   background-color: #6ecbff;

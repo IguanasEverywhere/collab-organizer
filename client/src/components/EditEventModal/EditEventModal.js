@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import lightStyles from './EditEventModalLight.module.css';
+import darkStyles from './EditEventModalDark.module.css';
 import Backdrop from '../Backdrop/Backdrop';
 import { useFormik } from 'formik';
 import * as yup from "yup";
 import { useParams, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function EventModal({ setModalVisible, eventInfo }) {
 
@@ -12,6 +14,9 @@ function EventModal({ setModalVisible, eventInfo }) {
 
   const [availablePianists, setAvailablePianists] = useState([]);
 
+  const viewMode = useSelector(state => state.viewMode.value)
+  const currentStyle = viewMode === "light" ? lightStyles : darkStyles
+
   useEffect(() => {
     fetch('/api/pianists')
       .then(r => r.json())
@@ -19,12 +24,9 @@ function EventModal({ setModalVisible, eventInfo }) {
   }, [])
 
 
-  console.log(availablePianists)
-
   function handleClose() {
     setModalVisible((modalVisible) => !modalVisible)
   }
-
 
   //update this schema!
   const schema = yup.object().shape({
@@ -35,11 +37,9 @@ function EventModal({ setModalVisible, eventInfo }) {
     eventTime: yup.date(),
   })
 
-  console.log(eventInfo)
 
-
-  // wait for availablePianists to populate, assign null until then. Then formik pianistId gets assigned to either the eventInfo's pianist if there is one, or null, or first availablePianist
-  let pianistID = availablePianists.length > 0 ? availablePianists[0].id : null
+  // wait for availablePianists to populate, assign null until then. Then formik pianistId gets assigned to either the eventInfo's pianist if there is one, or 1, or first availablePianist
+  let pianistID = availablePianists.length > 0 ? availablePianists[0].id : 1
 
   const formik = useFormik({
     initialValues: {
@@ -65,14 +65,12 @@ function EventModal({ setModalVisible, eventInfo }) {
     }
   })
 
-  console.log(formik.values)
-
 
   // add errors to form
   return (
     <>
       <Backdrop />
-      <div className={lightStyles.modalBody}>
+      <div className={currentStyle.modalBody}>
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="eventType">Event Type</label>
           <br />

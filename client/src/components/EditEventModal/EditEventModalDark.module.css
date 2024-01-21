@@ -1,0 +1,16 @@
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  position: absolute;
+  background-color: blue;
+  width: 50%;
+}
+
+.modalBody > * {
+  padding: 5%;
+}
+
+small {
+  color: red;
+}
