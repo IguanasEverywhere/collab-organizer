@@ -1,10 +1,16 @@
+.landingPageBody {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .landingTop {
-  /* background-color: #35dddd; */
   background-image: linear-gradient(#35dddd, white);
   display: flex;
   justify-content: space-around;
   padding: 2rem;
-  /* box-shadow: 5px 5px 5px gray; */
+  padding-bottom: 4rem;
+  height: 90vh;
 }
 
 .logoImg {
@@ -22,7 +28,20 @@
 }
 
 .landingBottom {
-  background-color: gray;
+  background-color: #80808014;
+  height: 100%;
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.landingBottom p {
+  font-size: 0.75rem;
+  cursor: text;
 }
 
 .landingTopLeft {

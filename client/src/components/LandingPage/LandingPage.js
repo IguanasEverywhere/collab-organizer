@@ -29,21 +29,21 @@ function LandingPage() {
             src={logoImg}
             alt="logo-img"
             className={styles.logoImg}></img>
+
         </div>
 
+      </section>
 
-      </section>
-      <section className={styles.landingMiddle}>
-        Middle section
-      </section>
 
       <section className={styles.landingBottom}>
 
-        <h2>Login thing goes here</h2>
-        <Login />
-      </section>
+        <p>Application by Scott Schwab, 2023-2024</p>
 
+        <a href="https://www.istockphoto.com/vector/a-young-pianist-and-a-beautiful-woman-singer-gm1192119192-338597393"><p>Logo Image Source </p></a>
+      </section>
     </div>
+
+
   )
 }
 
