@@ -31,6 +31,7 @@ function AllPianists() {
       <h1>All pianists for coordinator: {coordinator.payload.username}</h1>
       <div className={currentStyle.pianistsListingArea}>
         <button onClick={handleAddNewClick} className={currentStyle.addNewBtn}>Add New Pianist</button>
+        {allPianists.length === 0 ? <h3><br />You have no pianists yet!</h3> : null}
         {allPianists.map((pianist) => <Link to={`/pianists/${pianist.id}`}
           key={pianist.id}
           className={currentStyle.pianistListing}

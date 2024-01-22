@@ -32,6 +32,7 @@ function AllStudents() {
       <h1>All Students for coordinator: {coordinator.payload.username}</h1>
       <div className={currentStyle.studentsListingArea}>
         <button onClick={handleAddNewClick} className={currentStyle.addNewBtn}>Add New Student</button>
+        {allStudents.length === 0 ? <h3><br />You have no students yet!</h3> : null}
         {allStudents.map((student) => <Link to={`/students/${student.id}`}
         key={student.id}
         className={currentStyle.studentListing}
