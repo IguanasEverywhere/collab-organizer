@@ -25,7 +25,7 @@ function NavBar() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ 'viewMode': newView })
-    }).then(r => r.json()).then(console.log('changed view'))
+    }).then(r => r.json())
 
   }
 

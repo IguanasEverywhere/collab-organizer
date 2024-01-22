@@ -21,6 +21,15 @@ from sqlalchemy import or_
 def index(id=0):
     return render_template("index.html")
 
+@app.before_request
+def check_logged_in_status():
+
+    locked_endpoints = ['/api/pianists', '/api/students', '/api/events']
+    if request.endpoint in locked_endpoints and request.method == 'GET':
+        if not session.get('logged_in_coordinator_id'):
+            response = make_response({'Error': 'Not Logged In'}, 401)
+            return response
+
 
 class Coordinators(Resource):
     def get(self):
@@ -293,6 +302,7 @@ class Logout(Resource):
 class CheckSession(Resource):
     def get(self):
         if session.get('logged_in_coordinator_id'):
+            print("session", session['logged_in_coordinator_id'])
             current_user = Coordinator.query.filter(Coordinator.id==session['logged_in_coordinator_id']).first()
 
             return current_user.to_dict(), 200

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Switch, Route, Redirect, useLocation } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation, useHistory } from "react-router-dom";
 import AllStudents from '../components/AllStudents/AllStudents';
 import AllPianists from '../components/AllPianists/AllPianists';
 import AllEvents from '../components/AllEvents/AllEvents';
@@ -23,22 +23,27 @@ function App() {
 
   const dispatch = useDispatch();
   const loggedInUser = useSelector(state => state.loggedInUser.value)
+  const history = useHistory();
 
   const location = useLocation();
 
   useEffect(() => {
     fetch('/api/check-session')
-      .then(r => r.json())
+      .then(r => {
+        return r.json()
+      })
       .then(loggedInData => {
+        if (!loggedInData) {
+          history.push('/')
+        }
         dispatch(changeLoggedInUser(loggedInData));
       })
-  }, [dispatch])
+  }, [dispatch, history])
+
 
 
   let redirectPath = location.pathname === '/' ? '/welcome' : location.pathname
 
-
-  // //think about this, do we need it? may be better to get from prefs in db as below, but you'll need to save it to db on each click of the change button
 
   useEffect(() => {
     if (!loggedInUser.payload) {
@@ -48,9 +53,12 @@ function App() {
     }
   }, [dispatch, loggedInUser.payload])
 
+
   if (!loggedInUser.payload) {
+
     return (
       <>
+        {/* <Redirect to={'/'}/> */}
         <Switch>
           <Route exact path='/'>
             <LandingPage />
@@ -65,6 +73,7 @@ function App() {
 
   else {
     return (
+
       <div className={lightStyles.mainBody}>
         <Redirect to={redirectPath} />
         <NavBar />
