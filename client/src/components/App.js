@@ -33,12 +33,12 @@ function App() {
         return r.json()
       })
       .then(loggedInData => {
-        if (!loggedInData) {
+        if (!loggedInData && location.pathname !== '/signup') {
           history.push('/')
         }
         dispatch(changeLoggedInUser(loggedInData));
       })
-  }, [dispatch, history])
+  }, [dispatch, history, location.pathname])
 
 
 
