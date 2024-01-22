@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import lightStyles from './NewEventLight.module.css';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 function NewEvent() {
 
@@ -71,7 +71,7 @@ function NewEvent() {
   // add errors to form
   return (
     <>
-      {availablePianists.length === 0 || availableStudents === 0 ? <p>You need at least one pianist and one student to create an event!</p> :
+      {availableStudents.length === 0 ? <p>You need at least one student to create an event! Go to your students listing <Link to='/students'>here.</Link> </p> :
         <div className={lightStyles.newEventArea}>
           <div className={lightStyles.modalBody}>
             <form onSubmit={formik.handleSubmit}>

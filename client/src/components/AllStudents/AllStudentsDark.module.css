@@ -4,6 +4,11 @@
   height: 100%;
 }
 
+.mainBody h1 {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
 .studentsListingArea {
   display: flex;
   flex-direction: column;
