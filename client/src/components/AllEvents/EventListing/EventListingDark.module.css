@@ -10,12 +10,10 @@
   margin: 5px;
   padding: 0.5rem;
   border-radius: 15px;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   text-decoration: none;
   color: #862286;
-
-
 }
 
 .listing:hover {

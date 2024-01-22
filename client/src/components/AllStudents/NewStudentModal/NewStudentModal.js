@@ -1,13 +1,18 @@
 import React from 'react';
 import Backdrop from '../../Backdrop/Backdrop';
-import lightStyles from './NewStudentModal.module.css';
+import lightStyles from './NewStudentModalLight.module.css';
+import darkStyles from './NewStudentModalDark.module.css';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function NewStudentModal({ setModalVisible }) {
 
   const history = useHistory();
+
+  const viewMode = useSelector(state => state.viewMode.value)
+  const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
   const newStudentSchema = yup.object().shape({
     name: yup.string().required(),
@@ -43,11 +48,11 @@ function NewStudentModal({ setModalVisible }) {
   }
 
   return (
-    <div className={lightStyles.modalContainer}>
+    <div className={currentStyle.modalContainer}>
       <Backdrop />
-      <div className={lightStyles.modalBody}>
-      <div className={lightStyles.closeBtnArea}>
-          <button onClick={handleCloseClick} className={lightStyles.closeBtn}>
+      <div className={currentStyle.modalBody}>
+        <div className={currentStyle.closeBtnArea}>
+          <button onClick={handleCloseClick} className={currentStyle.closeBtn}>
             &nbsp;X&nbsp;
           </button>
         </div>
@@ -58,7 +63,7 @@ function NewStudentModal({ setModalVisible }) {
             id="name"
             onChange={studentFormik.handleChange}
             value={studentFormik.values.name}></input>
-            <small>{studentFormik.errors.name}</small>
+          <small>{studentFormik.errors.name}</small>
 
           <label htmlFor="email">Student Email</label>
           <input
@@ -66,7 +71,7 @@ function NewStudentModal({ setModalVisible }) {
             id="email"
             onChange={studentFormik.handleChange}
             value={studentFormik.values.email}></input>
-            <small>{studentFormik.errors.email}</small>
+          <small>{studentFormik.errors.email}</small>
 
           <label htmlFor="instrument">Instrument</label>
           <input
@@ -74,7 +79,7 @@ function NewStudentModal({ setModalVisible }) {
             id="instrument"
             onChange={studentFormik.handleChange}
             value={studentFormik.values.instrument}></input>
-            <small>{studentFormik.errors.instrument}</small>
+          <small>{studentFormik.errors.instrument}</small>
 
           <label htmlFor="teacher">Teacher Name</label>
           <input
@@ -82,9 +87,9 @@ function NewStudentModal({ setModalVisible }) {
             id-="teacher"
             onChange={studentFormik.handleChange}
             value={studentFormik.values.teacher}></input>
-            <small>{studentFormik.errors.teacher}</small>
+          <small>{studentFormik.errors.teacher}</small>
 
-          <button className={lightStyles.submitBtn} type="submit">Add New Student</button>
+          <button className={currentStyle.submitBtn} type="submit">Add New Student</button>
 
         </form>
       </div>

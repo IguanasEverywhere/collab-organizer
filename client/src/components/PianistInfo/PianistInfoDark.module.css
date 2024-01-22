@@ -45,8 +45,12 @@
 }
 
 .deleteBtn {
-  background-color: #e39505;
+  background-color: rgb(235, 152, 152);
   border: none;
   padding: 7px;
-  border-radius: 5px;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: white;
 }

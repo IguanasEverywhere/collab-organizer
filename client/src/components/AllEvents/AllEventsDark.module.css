@@ -24,7 +24,7 @@
   align-items: center;
 }
 
-.listing {
+/* .listing {
   background-color: orange;
   width: 50%;
   margin: 5px;
@@ -38,7 +38,7 @@
 
 .listing:hover {
   background-color: yellow;
-}
+} */
 
 .addNewBtn {
   background-color: #9b409b;
