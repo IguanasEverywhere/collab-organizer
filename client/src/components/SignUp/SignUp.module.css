@@ -51,3 +51,8 @@
     border: 1px solid white;
     box-shadow: 0px 0px 5px gray;
   }
+
+  small {
+    font-size: 0.75rem;
+    text-align: center;
+  }

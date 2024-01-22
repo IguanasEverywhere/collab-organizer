@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as yup from "yup";
 import { useFormik } from "formik";
 import SignUpConfirmation from './SignUpConfirmation/SignUpConfirmation';
 import styles from './SignUp.module.css';
 import Backdrop from '../Backdrop/Backdrop';
+import { useHistory } from 'react-router-dom';
 
 function SignUp() {
 
-  // we may need to check login status first in case a user navigates here manually for some reason while already logged in
+
+  // redirect to welcome page if user already logged in if they access signup directly for some reason
+  const history = useHistory();
+
+  useEffect(() => {
+    fetch('/api/check-session')
+      .then(r => r.json()).then(response => {
+        if (response) {
+          history.push('/welcome')
+        }
+      })
+  })
 
   const [signUpSuccess, setSignUpSuccess] = useState(false)
 
-  // add more validation to shape for length of input, etc
-
   const signUpSchema = yup.object().shape({
-    username: yup.string().required(),
-    password: yup.string().required(),
+    username: yup.string().required().min(4),
+    password: yup.string().required().min(5),
     organization: yup.string().required(),
   })
 
@@ -40,6 +50,7 @@ function SignUp() {
         })
     }
   })
+
 
   return (
     <div className={styles.signUpBody}>
