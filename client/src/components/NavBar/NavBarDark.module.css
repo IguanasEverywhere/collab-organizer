@@ -1,12 +1,21 @@
 .header {
-  background-color: blue;
+  background-color: #862186;
   display: flex;
   justify-content: space-between;
   padding: 2.5%;
+  color: white;
+}
+
+.unSelectedNavLink {
+  text-decoration: none;
+  color: white;
+  font-weight: 100;
 }
 
 .navLink {
-  background-color: orange;
+  color: orange;
+  font-weight: 800;
+  text-decoration: none;
 }
 
 p {
