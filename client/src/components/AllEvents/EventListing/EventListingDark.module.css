@@ -13,9 +13,12 @@
   font-weight: 600;
   display: flex;
   text-decoration: none;
-  color: #328889;
+  color: #862286;
+
+
 }
 
 .listing:hover {
-  background-color: yellow;
+  background-color: #862286;
+  color: white;
 }

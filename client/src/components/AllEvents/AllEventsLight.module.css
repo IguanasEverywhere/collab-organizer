@@ -34,3 +34,10 @@
   color: white;
 }
 
+select {
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+
