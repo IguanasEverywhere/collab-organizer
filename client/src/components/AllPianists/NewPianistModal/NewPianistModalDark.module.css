@@ -1,0 +1,61 @@
+.modalContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.modalBody {
+  border: 2px solid black;
+  background-color: white;
+  z-index: 10;
+  position: absolute;
+  padding: 10px;
+  border-radius: 15px;
+  background-image: linear-gradient(to bottom right, orange, gray);
+}
+
+.modalBody > form {
+  display: flex;
+  flex-direction: column;
+  color: black;
+}
+
+.modalBody > form > input, .modalBody > form > select {
+  margin-bottom: 10px;
+}
+
+.closeBtnArea {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeBtn {
+  background-color: white;
+  border-radius: 100%;
+  padding:3px;
+  font-size: 0.65rem;
+  font-weight: 100;
+  border: 1px solid gray;
+  cursor: pointer;
+  color: #862286;
+  font-weight: 500;
+}
+
+.closeBtn:hover {
+  background-color: orange;
+  border: 1px solid orange;
+  color: white;
+}
+
+.submitBtn {
+  background-color: #862286;
+  border: none;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.submitBtn:hover {
+  background-color: gray;
+  color: orange;
+}
+
