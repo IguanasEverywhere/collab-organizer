@@ -1,10 +1,13 @@
+
 .newEventArea {
   display: flex;
   justify-content: center;
+  background-color: black;
+  height: 100%;
 }
 
 .modalBody {
-  background-image: linear-gradient(to bottom right, #35dddd, #35ddde30);
+  background-image: linear-gradient(to bottom right, orange, #35ddde30);
   margin-top: 3%;
   padding: 4%;
   border-radius: 15px;
@@ -16,15 +19,16 @@
 }
 
 .modalBody button {
-  background-color: orange;
+  background-color: #862186;
   border: none;
   padding: 7px;
   cursor: pointer;
+  color: white;
 }
 
 .modalBody button:hover {
-  background-color: #07aeae;
-  color: white;
+  background-color: gray;
+  color: black;
 }
 
 p {

@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import lightStyles from './NewEventLight.module.css';
+import darkStyles from './NewEventDark.module.css';
 import { useHistory, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function NewEvent() {
 
   const history = useHistory();
+  const viewMode = useSelector(state => state.viewMode.value)
+  const currentStyle = viewMode === "light" ? lightStyles : darkStyles
 
   const [availablePianists, setAvailablePianists] = useState([]);
   const [availableStudents, setAvailableStudents] = useState([]);
@@ -39,10 +43,6 @@ function NewEvent() {
   const defaultMonth = defaultMonthNum < 10 ? '0' + defaultMonthNum : defaultMonthNum
   const defaultDay = starterDate.getDate()
 
-  // Setting to 1 seems dangerous, but works for now
-  // let pianistID = availablePianists.length > 0 ? availablePianists[0].id : 1
-
-
   const formik = useFormik({
     initialValues: {
       eventType: "Junior Recital",
@@ -70,10 +70,10 @@ function NewEvent() {
 
   // add errors to form
   return (
-    <>
+    <div className={currentStyle.newEventBg}>
       {availableStudents.length === 0 ? <p>You need at least one student to create an event! Go to your students listing <Link to='/students'>here.</Link> </p> :
-        <div className={lightStyles.newEventArea}>
-          <div className={lightStyles.modalBody}>
+        <div className={currentStyle.newEventArea}>
+          <div className={currentStyle.modalBody}>
             <form onSubmit={formik.handleSubmit}>
               <h3>Event Information:</h3>
 
@@ -144,7 +144,7 @@ function NewEvent() {
                 name="pianistId"
                 onChange={formik.handleChange}
                 value={formik.values.pianistId}>
-                  <option value={""}>UNASSIGNED PIANIST</option>
+                <option value={""}>UNASSIGNED PIANIST</option>
                 {availablePianists.map((pianist) =>
                   <option
                     value={pianist.id}
@@ -160,7 +160,7 @@ function NewEvent() {
           </div>
         </div>
       }
-    </>
+    </div>
   )
 }
 
