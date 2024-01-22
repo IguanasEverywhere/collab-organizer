@@ -1,3 +1,11 @@
 .signUpConfirmModal {
-  border: 2px solid red;
+  border: 1px solid gray;
+  z-index: 10;
+  position: absolute;
+  box-shadow: 0 0 15px #474747;
+  background-image: linear-gradient(to left, #5df1f1, #35dddd);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3%;
 }

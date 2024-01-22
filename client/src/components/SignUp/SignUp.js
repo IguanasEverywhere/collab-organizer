@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import * as yup from "yup";
 import { useFormik } from "formik";
 import SignUpConfirmation from './SignUpConfirmation/SignUpConfirmation';
+import styles from './SignUp.module.css';
+import Backdrop from '../Backdrop/Backdrop';
 
 function SignUp() {
 
@@ -40,8 +42,9 @@ function SignUp() {
   })
 
   return (
-    <div>
-      <form onSubmit={signUpFormik.handleSubmit}>
+    <div className={styles.signUpBody}>
+      <h2>Sign up for your free PianOrganizer account today!</h2>
+      <form className={styles.signUpForm} onSubmit={signUpFormik.handleSubmit}>
         <label htmlFor="username">Username</label>
         <input
           id="username"
@@ -49,6 +52,7 @@ function SignUp() {
           onChange={signUpFormik.handleChange}
           value={signUpFormik.values.username}>
         </input>
+        <small>{signUpFormik.errors.username}</small>
 
         <label htmlFor="password">Password</label>
         <input
@@ -57,6 +61,7 @@ function SignUp() {
           onChange={signUpFormik.handleChange}
           value={signUpFormik.values.password}>
         </input>
+        <small>{signUpFormik.errors.password}</small>
 
         <label htmlFor="organization">Organization</label>
         <input
@@ -65,9 +70,15 @@ function SignUp() {
           onChange={signUpFormik.handleChange}
           value={signUpFormik.values.organization}>
         </input>
+        <small>{signUpFormik.errors.organization}</small>
 
         <button type="submit">Sign Up</button>
-        {signUpSuccess ? <SignUpConfirmation setSignUpSuccess={setSignUpSuccess}/> : null}
+        {signUpSuccess ?
+          <>
+            <Backdrop />
+            <SignUpConfirmation setSignUpSuccess={setSignUpSuccess} />
+          </>
+          : null}
 
       </form>
 

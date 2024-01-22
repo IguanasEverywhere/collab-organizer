@@ -9,8 +9,10 @@ function SignUpConfirmation({setSignUpSuccess}) {
   }
   return (
     <div className={styles.signUpConfirmModal}>
-      Sign up Successful!
-      Click <Link onClick={handleLinkClick} to='/'>here</Link> to return to the home page where you can log in.
+      <h1>🎉 🎹 🎉</h1>
+      <h2>Sign up Successful!</h2>
+      <p>Click <Link onClick={handleLinkClick} to='/'>here</Link> to return to the home page where you can log in.</p>
+
     </div>
   )
 }
