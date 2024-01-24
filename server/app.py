@@ -18,6 +18,7 @@ from sqlalchemy import or_
 @app.route('/')
 @app.route('/pianists')
 @app.route('/events')
+@app.route('/students')
 def index(id=0):
     return render_template("index.html")
 
@@ -207,10 +208,6 @@ class Events(Resource):
         pianist_id = event_data['pianistId']
         coordinator_id = current_coord
 
-        print(type(event_time))
-        print(event_time)
-
-
         date_time_obj = datetime.strptime(event_time, '%Y-%m-%dT%H:%M')
 
         new_event = Event(
@@ -253,6 +250,7 @@ class EventInfo(Resource):
         event_to_edit.location = eventLocation
         event_to_edit.pianist_id = pianistId
         event_to_edit.coordinator_id = coordinatorId
+
 
         try:
           date_time_obj = datetime.strptime(eventTime, '%Y-%m-%dT%H:%M:%S')

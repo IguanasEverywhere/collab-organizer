@@ -16,7 +16,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeLoggedInUser } from '../reduxSlices/loggedInUserSlice';
 import { changeView } from '../reduxSlices/darkModeSlice';
 
-import lightStyles from './AppLight.module.css';
+import styles from './App.module.css';
 
 
 function App() {
@@ -58,7 +58,6 @@ function App() {
 
     return (
       <>
-        {/* <Redirect to={'/'}/> */}
         <Switch>
           <Route exact path='/'>
             <LandingPage />
@@ -74,7 +73,7 @@ function App() {
   else {
     return (
 
-      <div className={lightStyles.mainBody}>
+      <div className={styles.mainBody}>
         <Redirect to={redirectPath} />
         <NavBar />
         <Switch>
