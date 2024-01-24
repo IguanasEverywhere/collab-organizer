@@ -221,4 +221,4 @@ PianOrganizer can already do many things, but there is still room for growth. So
 
 Please submit any ideas for further development to Scott Schwab, scottschwab86@gmail.com
 
-Developed by Scott Schwab, 2023
+Developed by Scott Schwab, 2024
