@@ -14,7 +14,9 @@ from datetime import datetime
 from sqlalchemy import or_
 
 
+
 # Views go here!
+#may need to add some more here for specific id routes
 @app.route('/')
 @app.route('/pianists')
 @app.route('/events')
