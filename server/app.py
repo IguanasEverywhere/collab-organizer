@@ -16,11 +16,16 @@ from sqlalchemy import or_
 
 
 # Views go here!
-#may need to add some more here for specific id routes
+
 @app.route('/')
 @app.route('/pianists')
+@app.route('/pianists/<int:id>')
 @app.route('/events')
+@app.route('/events/<int:id>')
 @app.route('/students')
+@app.route('/students/<int:id>')
+@app.route('/welcome')
+# @app.route('/unassigned-events')
 def index(id=0):
     return render_template("index.html")
 
