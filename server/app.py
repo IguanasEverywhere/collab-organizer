@@ -25,7 +25,6 @@ from sqlalchemy import or_
 @app.route('/students')
 @app.route('/students/<int:id>')
 @app.route('/welcome')
-# @app.route('/unassigned-events')
 def index(id=0):
     return render_template("index.html")
 

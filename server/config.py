@@ -39,7 +39,8 @@ db.init_app(app)
 api = Api(app)
 
 bcrypt = Bcrypt(app)
-app.secret_key = "b'\t\xa0\xec\xb6\x87z3\xf5\x98:e\x9c7\xc1\xc9h'"
+
+app.secret_key=os.environ.get('SECRET_KEY')
 
 # Instantiate CORS
 CORS(app)

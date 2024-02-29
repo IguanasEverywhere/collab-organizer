@@ -28,6 +28,7 @@ class Coordinator(db.Model, SerializerMixin):
   def authenticate(self, password):
     return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
+
 class Pianist(db.Model, SerializerMixin):
   __tablename__ = "Pianists"
 
@@ -45,6 +46,7 @@ class Pianist(db.Model, SerializerMixin):
     return email_address
 
   coordinator_id = db.Column(db.Integer, db.ForeignKey('Coordinators.id'))
+
 
   events = db.relationship('Event', back_populates='pianist')
 
