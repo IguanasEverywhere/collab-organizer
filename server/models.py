@@ -28,6 +28,12 @@ class Coordinator(db.Model, SerializerMixin):
   def authenticate(self, password):
     return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
+  #experiment here
+
+  serialize_rules = ('-events.coordinator',)
+
+  events = db.relationship('Event', back_populates='coordinator', cascade='all, delete-orphan')
+
 
 class Pianist(db.Model, SerializerMixin):
   __tablename__ = "Pianists"
@@ -75,7 +81,7 @@ class Student(db.Model, SerializerMixin):
 class Event(db.Model, SerializerMixin):
   __tablename__ = "Events"
 
-  serialize_rules = ('-student.events', '-pianist.events',)
+  serialize_rules = ('-student.events', '-pianist.events', '-coordinator.events',)
 
   id = db.Column(db.Integer, primary_key=True)
 
@@ -90,4 +96,7 @@ class Event(db.Model, SerializerMixin):
 
   student = db.relationship('Student', back_populates='events')
   pianist = db.relationship('Pianist', back_populates='events')
+
+  #experiment here
+  coordinator = db.relationship('Coordinator', back_populates='events')
 
