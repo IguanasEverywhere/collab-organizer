@@ -25,6 +25,9 @@ app = Flask(__name__,
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key="placeholderkey"
+# app.secret_key=os.environ.get('SECRET_KEY')
+# print("Secret Key:", os.environ.get('SECRET_KEY'), "DB URI:", os.environ.get('DATABASE_URI'))
 app.json.compact = False
 
 # Define metadata, instantiate db
@@ -40,7 +43,7 @@ api = Api(app)
 
 bcrypt = Bcrypt(app)
 
-app.secret_key=os.environ.get('SECRET_KEY')
+
 
 # Instantiate CORS
 CORS(app)

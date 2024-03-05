@@ -55,7 +55,7 @@ class Coordinators(Resource):
             username=signup_data['username'],
             password_hash=signup_data['password'],
             organization=signup_data['organization'],
-            viewModePreference='light'
+            view_mode_preference='light'
         )
 
         db.session.add(new_coordinator)

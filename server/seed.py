@@ -24,11 +24,7 @@ if __name__ == '__main__':
         print("Starting seed...")
         # Seed code goes here!
 
-        coordinators_to_delete = Coordinator.query.all()
-        for coordinator in coordinators_to_delete:
-            db.session.delete(coordinator)
-
-        # Coordinator.query.delete()
+        Coordinator.query.delete()
         Pianist.query.delete()
         Student.query.delete()
         Event.query.delete()
@@ -49,7 +45,7 @@ if __name__ == '__main__':
 
         db.session.add(coord1)
         db.session.add(coord2)
-        db.session.commit()
+
 
         for x in range(30):
             new_student = Student(
