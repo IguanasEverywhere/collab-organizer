@@ -11,8 +11,10 @@ from sqlalchemy import MetaData
 from flask_bcrypt import Bcrypt
 
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 load_dotenv()
+# load_dotenv(find_dotenv(".env"))
+
 
 # Local imports
 
@@ -22,12 +24,23 @@ app = Flask(__name__,
             static_folder='../client/build',
             template_folder='../client/build')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key="placeholderkey"
-# app.secret_key=os.environ.get('SECRET_KEY')
-# print("Secret Key:", os.environ.get('SECRET_KEY'), "DB URI:", os.environ.get('DATABASE_URI'))
+
+
+
+# works, but is in config file
+#app.secret_key="placeholderkey"
+
+#doesnt work
+app.secret_key=os.environ.get('SECRET_KEY')
+
+#works temporarily, but after restarting it doesnt? and not called secret key
+#app.secret_key=os.environ.get('SOME_OTHER_KEY')
+
+print("Secret Key:", os.environ.get('SECRET_KEY'), "Some other key:", os.environ.get('SOME_OTHER_KEY'), "DB URI:", os.environ.get('DATABASE_URI'))
+
 app.json.compact = False
 
 # Define metadata, instantiate db
@@ -41,8 +54,8 @@ db.init_app(app)
 # Instantiate REST API
 api = Api(app)
 
-bcrypt = Bcrypt(app)
 
+bcrypt = Bcrypt(app)
 
 
 # Instantiate CORS
