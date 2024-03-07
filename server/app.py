@@ -316,7 +316,9 @@ class CheckSession(Resource):
 class UnassignedEvents(Resource):
     def get(self):
         current_coord = session.get('logged_in_coordinator_id')
-        events_with_null_pianist = Event.query.filter(or_(Event.pianist_id==None, Event.pianist_id=="")).all()
+        # events_with_null_pianist = Event.query.filter(or_(Event.pianist_id==None, Event.pianist_id=="")).all()
+
+        events_with_null_pianist = Event.query.filter(Event.pianist_id==None).all()
 
         serialized_events = [event.to_dict() for event in events_with_null_pianist if event.coordinator_id==current_coord]
 

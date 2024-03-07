@@ -8,7 +8,7 @@ from config import db, bcrypt
 # Models go here!
 
 class Coordinator(db.Model, SerializerMixin):
-  __tablename__ = "Coordinators"
+  __tablename__ = "coordinators"
 
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String, nullable=False)
@@ -36,7 +36,7 @@ class Coordinator(db.Model, SerializerMixin):
 
 
 class Pianist(db.Model, SerializerMixin):
-  __tablename__ = "Pianists"
+  __tablename__ = "pianists"
 
   serialize_rules = ('-events.pianist',)
 
@@ -51,13 +51,13 @@ class Pianist(db.Model, SerializerMixin):
       raise ValueError("Invalid Email Address")
     return email_address
 
-  coordinator_id = db.Column(db.Integer, db.ForeignKey('Coordinators.id'))
+  coordinator_id = db.Column(db.Integer, db.ForeignKey('coordinators.id'))
 
 
   events = db.relationship('Event', back_populates='pianist')
 
 class Student(db.Model, SerializerMixin):
-  __tablename__ = "Students"
+  __tablename__ = "students"
 
   serialize_rules = ('-events.student',)
 
@@ -74,12 +74,12 @@ class Student(db.Model, SerializerMixin):
       raise ValueError("Invalid Email Address")
     return email_address
 
-  coordinator_id = db.Column(db.Integer, db.ForeignKey('Coordinators.id'))
+  coordinator_id = db.Column(db.Integer, db.ForeignKey('coordinators.id'))
 
   events = db.relationship('Event', back_populates='student', cascade='all, delete-orphan')
 
 class Event(db.Model, SerializerMixin):
-  __tablename__ = "Events"
+  __tablename__ = "events"
 
   serialize_rules = ('-student.events', '-pianist.events', '-coordinator.events',)
 
@@ -90,9 +90,9 @@ class Event(db.Model, SerializerMixin):
   event_length = db.Column(db.Integer, nullable=False)
   location = db.Column(db.String, nullable=False)
 
-  student_id = db.Column(db.Integer, db.ForeignKey('Students.id'))
-  pianist_id = db.Column(db.Integer, db.ForeignKey('Pianists.id'))
-  coordinator_id = db.Column(db.Integer, db.ForeignKey('Coordinators.id'))
+  student_id = db.Column(db.Integer, db.ForeignKey('students.id'))
+  pianist_id = db.Column(db.Integer, db.ForeignKey('pianists.id'))
+  coordinator_id = db.Column(db.Integer, db.ForeignKey('coordinators.id'))
 
   student = db.relationship('Student', back_populates='events')
   pianist = db.relationship('Pianist', back_populates='events')

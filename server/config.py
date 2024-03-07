@@ -36,10 +36,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #doesnt work
 app.secret_key=os.environ.get('SECRET_KEY')
 
-#works temporarily, but after restarting it doesnt? and not called secret key
-#app.secret_key=os.environ.get('SOME_OTHER_KEY')
-
-print("Secret Key:", os.environ.get('SECRET_KEY'), "Some other key:", os.environ.get('SOME_OTHER_KEY'), "DB URI:", os.environ.get('DATABASE_URI'))
+print("Secret Key:", os.environ.get('SECRET_KEY'), "DB URI:", os.environ.get('DATABASE_URI'))
 
 app.json.compact = False
 
