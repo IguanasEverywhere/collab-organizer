@@ -29,15 +29,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
-
-# works, but is in config file
-#app.secret_key="placeholderkey"
-
-
 app.secret_key=os.environ.get('SECRET_KEY')
 
-print("SECRET KEY: ", os.environ.get('SECRET_KEY'))
-print("DATABASE URI: ", os.environ.get('DATABASE_URI'))
 
 app.json.compact = False
 
