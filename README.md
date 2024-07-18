@@ -6,6 +6,8 @@ At collegiate music institutions, students are required to fulfill a number of d
 
 ## Usage
 
+DEMO VIDEO: https://www.youtube.com/watch?v=-QYABX07N_0
+
 Coordinators may register for a unique account with PianOrganizer. Upon logging into their account, coordinators are greeted with a welcome page, which includes a "To-Do" list of events that do not yet have (or no longer have) an assigned pianist.
 
 Coordinators can:
