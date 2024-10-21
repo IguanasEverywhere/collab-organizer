@@ -5,8 +5,8 @@
 At collegiate music institutions, students are required to fulfill a number of degree-fulfilling performance obligations. These include Junior Recitals, Senior Recitals, Master Classes, Juries, and more. Generally, a challenge for Piano faculty at these institutions is to manage the assignments of Pianists (whether staff or other students) to collaborate with these music students at these performances. PianOrganizer provides a way for piano faculty coordinators to assign, manage, and maintain these musical relationships.
 
 ## Usage
-
-[![](https://markdown-videos-api.jorgenkh.no/youtube/{-QYABX07N_0})](https://youtu.be/{-QYABX07N_0})
+Demo video:
+[![demo](https://img.youtube.com/vi/-QYABX07N_0/0.jpg)](https://www.youtube.com/watch?v=-QYABX07N_0)
 
 Coordinators may register for a unique account with PianOrganizer. Upon logging into their account, coordinators are greeted with a welcome page, which includes a "To-Do" list of events that do not yet have (or no longer have) an assigned pianist.
 
