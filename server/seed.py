@@ -86,9 +86,6 @@ if __name__ == '__main__':
             db.session.add(new_pianist)
 
         for x in range (20):
-            # random_datetime_str = fake.date_time().strftime('%Y-%m-%d %H:%M')
-            # random_datetime = datetime.strptime(random_datetime_str, '%Y-%m-%d %H:%M')
-            # print(random_datetime)
             new_event = Event(
                 event_type = choice(event_types),
                 event_length = choice(event_lengths),

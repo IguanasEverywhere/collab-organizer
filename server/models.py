@@ -5,8 +5,6 @@ from sqlalchemy.orm import validates
 
 from config import db, bcrypt
 
-# Models go here!
-
 class Coordinator(db.Model, SerializerMixin):
   __tablename__ = "coordinators"
 
@@ -27,8 +25,6 @@ class Coordinator(db.Model, SerializerMixin):
 
   def authenticate(self, password):
     return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
-
-  #experiment here
 
   serialize_rules = ('-events.coordinator',)
 
@@ -52,7 +48,6 @@ class Pianist(db.Model, SerializerMixin):
     return email_address
 
   coordinator_id = db.Column(db.Integer, db.ForeignKey('coordinators.id'))
-
 
   events = db.relationship('Event', back_populates='pianist')
 
@@ -97,6 +92,5 @@ class Event(db.Model, SerializerMixin):
   student = db.relationship('Student', back_populates='events')
   pianist = db.relationship('Pianist', back_populates='events')
 
-  #experiment here
   coordinator = db.relationship('Coordinator', back_populates='events')
 
